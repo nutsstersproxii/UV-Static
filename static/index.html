@@ -5,23 +5,15 @@
       <title>Waffle Proxy - Search Engine Selector</title>
       <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
       <link rel="stylesheet" href="index.css">
-      <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
-      <link rel="shortcut icon" type="image/jpg" href="~/favicon.ico"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7YtcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-      <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
       <style>
-         /* Styling for the search engine selector */
          #search-engine-selector {
             margin-top: 10px;
          }
-
          label {
             font-size: 14px;
             font-weight: bold;
             margin-right: 10px;
          }
-
          select {
             padding: 5px;
             font-size: 14px;
@@ -29,7 +21,6 @@
       </style>
    </head>
    <body>
-      <div id="header"></div>
       <div id="content">
          <h1>Waffle Proxy! 🧇</h1>
 
@@ -38,48 +29,39 @@
             <div id="search-engine-selector">
                <label for="search-engine">Choose your search engine:</label>
                <select id="search-engine">
-                  <option value="/static/https://www.google.com/search?q=" selected>Google</option>
-                  <option value="/static/https://www.bing.com/search?q=">Microsoft Bing</option>
-                  <option value="/static/https://duckduckgo.com/?q=">DuckDuckGo</option>
+                  <option value="https://www.google.com/search?q=" selected>Google</option>
+                  <option value="https://www.bing.com/search?q=">Microsoft Bing</option>
+                  <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
                </select>
             </div>
             <button type="submit">Search</button>
          </form>
-
-         <div class="desc left-margin">
-            <p id="uv-error"></p>
-            <pre id="uv-error-code"></pre>
-         </div>
-
-         <a></a> <!-- Fixed invalid <a> elements -->
       </div>
-
-      <script src="uv/uv.bundle.js" defer></script>
-      <script src="uv/uv.config.js" defer></script>
-      <script src="register-sw.js" defer></script>
-      <script src="search.js" defer></script>
-      <script src="index.js" defer></script>
-      <script src="error.js" defer></script>
 
       <script>
          document.getElementById('uv-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission behavior
+            event.preventDefault();
 
             const searchInput = document.getElementById('uv-address').value.trim();
-            const selectedSearchEngine = document.getElementById('search-engine').value; // Get selected search engine proxy base
+            const selectedSearchEngine = document.getElementById('search-engine').value;
+
+            const proxyBase = "/static/tiw/"; // Adjust this as per your proxy’s requirement
+            let encodedURL;
 
             if (isValidURL(searchInput)) {
-               // If the input is a valid URL, navigate to it through the proxy
-               const encodedURL = encodeURIComponent(searchInput); // Encode for safe proxy passing
-               window.location.href = `${selectedSearchEngine}${encodedURL}`;
+               // If it's a valid URL, encode it for the proxy
+               encodedURL = encodeURIComponent(searchInput); // Adjust the encoding method if required
             } else {
-               // If the input isn't a URL, perform a search through the proxy
-               const query = encodeURIComponent(searchInput); // Encode query for safe URL
-               window.location.href = `${selectedSearchEngine}${query}`;
+               // If it's a search term, create the search URL and encode it for the proxy
+               const searchQuery = encodeURIComponent(searchInput);
+               const searchEngineURL = `${selectedSearchEngine}${searchQuery}`;
+               encodedURL = encodeURIComponent(searchEngineURL); // Encode the entire URL for the proxy
             }
+
+            // Redirect to the encoded URL via the proxy
+            window.location.href = `${proxyBase}${encodedURL}`;
          });
 
-         // Helper function to validate if the input is a URL
          function isValidURL(string) {
             try {
                const url = new URL(string);
