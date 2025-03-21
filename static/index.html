@@ -86,9 +86,11 @@
          <div id="settings-panel" class="settings-panel">
             <label for="theme-select">Choose Theme:</label>
             <select id="theme-select" onchange="changeTheme(this.value)">
+               <option value="default">Default</option>
                <option value="light">Light</option>
                <option value="dark">Dark</option>
-               <option value="custom">Custom</option>
+               <option value="nature">Nature</option>
+               <option value="retro">Retro</option>
             </select>
          </div>
 
@@ -124,17 +126,45 @@
 
          function changeTheme(theme) {
             switch (theme) {
+               case 'default':
+                  document.body.style.background = '';
+                  document.body.style.color = '';
+                  document.querySelectorAll('button, select').forEach(el => {
+                     el.style.background = '';
+                     el.style.color = '';
+                  });
+                  break;
                case 'light':
                   document.body.style.background = 'white';
                   document.body.style.color = 'black';
+                  document.querySelectorAll('button, select').forEach(el => {
+                     el.style.background = '#f0f0f0';
+                     el.style.color = 'black';
+                  });
                   break;
                case 'dark':
                   document.body.style.background = 'black';
                   document.body.style.color = 'white';
+                  document.querySelectorAll('button, select').forEach(el => {
+                     el.style.background = '#333';
+                     el.style.color = 'white';
+                  });
                   break;
-               case 'custom':
-                  document.body.style.background = '#f4e2d8';
-                  document.body.style.color = '#4a4a4a';
+               case 'nature':
+                  document.body.style.background = '#d8f3dc';
+                  document.body.style.color = '#1b4332';
+                  document.querySelectorAll('button, select').forEach(el => {
+                     el.style.background = '#95d5b2';
+                     el.style.color = '#081c15';
+                  });
+                  break;
+               case 'retro':
+                  document.body.style.background = '#ffefd5';
+                  document.body.style.color = '#d2691e';
+                  document.querySelectorAll('button, select').forEach(el => {
+                     el.style.background = '#f4a460';
+                     el.style.color = '#8b4513';
+                  });
                   break;
                default:
                   break;
