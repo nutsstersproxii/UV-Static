@@ -6,14 +6,14 @@
       <link rel="stylesheet" href="index.css">
       <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
       <link rel="shortcut icon" type="image/jpg" href="~/favicon.ico"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
       <style>
          .button-container {
             margin-top: 20px;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
          }
          .proxy-button {
             background: none;
@@ -21,8 +21,8 @@
             cursor: pointer;
          }
          .proxy-button img {
-            width: 50px;
-            height: 50px;
+            width: 30px;
+            height: 30px;
          }
       </style>
    </head>
@@ -32,21 +32,14 @@
          <h1>Waffle Proxy!🧇</h1>
 
          <form id="uv-form">
-            <input id="uv-search-engine" value="google.com/search" type="hidden"/> 
+            <input id="uv-search-engine" value="https://www.duckduckgo.com/" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
-            <button type="submit" style="display: none;"></button>
          </form>
 
-         <!-- Logo Buttons -->
+         <!-- DuckDuckGo Button -->
          <div class="button-container">
-            <button class="proxy-button" onclick="autoFillAndSubmit('https://www.tiktok.com')">
-               <img src="https://www.tiktok.com/favicon.ico" alt="TikTok">
-            </button>
-            <button class="proxy-button" onclick="autoFillAndSubmit('https://now.gg')">
-               <img src="https://now.gg/favicon.ico" alt="Now.gg">
-            </button>
-            <button class="proxy-button" onclick="autoFillAndSubmit('https://discord.com')">
-               <img src="https://discord.com/favicon.ico" alt="Discord">
+            <button class="proxy-button" onclick="openDuckDuckGoInProxy()">
+               <img src="https://www.duckduckgo.com/favicon.ico" alt="DuckDuckGo">
             </button>
          </div>
 
@@ -64,13 +57,12 @@
       <script src="search.js" defer></script>
       <script src="index.js" defer></script>
       <script src="error.js" defer></script>
-
       <script>
-         function autoFillAndSubmit(url) {
-            const searchInput = document.getElementById('uv-address');
-            searchInput.value = url; // Autofill the proxy input field with the link
-            const form = document.getElementById('uv-form');
-            form.submit(); // Automatically submit the form
+         function openDuckDuckGoInProxy() {
+            const proxyURL = '/proxy/'; // Replace with your proxy's base URL
+            const duckDuckGoURL = 'https://www.duckduckgo.com';
+            const finalURL = proxyURL + encodeURIComponent(duckDuckGoURL);
+            window.location.href = finalURL; // Open DuckDuckGo in the proxy
          }
       </script>
    </body>
