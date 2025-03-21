@@ -1,6 +1,6 @@
 /* Modern Waffle-Themed CSS */
 body {
-  background: linear-gradient(to bottom, #f8e0b9, #f3c98b); /* Soft waffle batter gradient */
+  background: linear-gradient(to bottom, #f8e0b9, #f3c98b, #e8a75d); /* Smooth waffle batter gradient */
   color: #5a2d0c; /* Rich syrupy text color */
   margin: 0;
   padding: 0;
@@ -8,6 +8,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 }
 
 /* Content Styling */
@@ -16,6 +17,7 @@ body {
   padding: 40px;
   max-width: 800px;
   width: 90%;
+  flex-grow: 1;
 }
 
 /* Modernized Header */
@@ -73,14 +75,15 @@ body {
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Footer */
+/* Footer - Seamless transition with background */
 #footer {
-  background: linear-gradient(to right, #e8a75d, #d89050);
+  background: linear-gradient(to bottom, #e8a75d, #d89050, #c7753a); /* Smooth waffle crust effect */
   color: #5a2d0c;
   padding: 20px;
   text-align: center;
-  border-top: 4px solid #c7753a; /* Deeper waffle crust */
+  border-top: 4px solid #b26020; /* Richer, toasted waffle edge */
   width: 100%;
   font-size: 16px;
   font-weight: 600;
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
 }
