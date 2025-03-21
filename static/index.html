@@ -25,29 +25,18 @@
             background: none;
             border: none;
             cursor: pointer;
-            padding: 0;
+            padding: 0; /* Remove any padding for a clean look */
          }
          .proxy-button img {
             width: 30px;
             height: 30px;
-            border: none;
+            border: none; /* Remove any border */
          }
          .button-label {
             font-family: 'Open Sans', sans-serif;
             font-size: 12px;
             margin-top: 5px;
             text-align: center;
-         }
-         #footer {
-            background: linear-gradient(to right, #e8a75d, #d89050);
-            color: #5a2d0c;
-            padding: 20px;
-            text-align: center;
-            border-top: 4px solid #c7753a;
-            width: 100%;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
          }
       </style>
    </head>
@@ -56,11 +45,12 @@
       <div id="content">
          <h1>Waffle Proxy!🧇</h1>
 
-         <form id="uv-form" onsubmit="event.preventDefault(); handleSearch();">
-            <input id="uv-search-engine" value="https://www.google.com/search?q=" type="hidden"/> 
+         <form id="uv-form">
+            <input id="uv-search-engine" value="google.com/search" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
          </form>
 
+         <!-- Buttons Side by Side -->
          <div class="button-container">
             <div class="button-group">
                <button class="proxy-button" onclick="openDuckDuckGoInProxy()">
@@ -87,37 +77,29 @@
             <pre id="uv-error-code"></pre>
          </div>
 
-         <a></a>
+         <a></a> <!-- Fixed invalid <a> elements -->
       </div>
 
-      <div id="footer" onclick="changeFooterMessage()"></div>
-
+      <script src="uv/uv.bundle.js" defer></script>
+      <script src="uv/uv.config.js" defer></script>
+      <script src="register-sw.js" defer></script>
+      <script src="search.js" defer></script>
+      <script src="index.js" defer></script>
+      <script src="error.js" defer></script>
       <script>
-         const phrases = [
-            "Made with ❤️ for waffle lovers!",
-            "School Chromebooks are so bad.",
-            "This proxy runs smoother than my grades.",
-            "Waffles > Pancakes. Don't @ me.",
-            "The WiFi is so slow, I can hear dial-up sounds.",
-            "Why do school blocks make no sense?",
-            "404: Homework Not Found.",
-            "Teacher: 'No phones in class.' Also Teacher: *On their laptop*",
-            "Using this proxy? Stay sneaky. 🕵️",
-            "If this stops working, blame the IT guy."
-         ];
-
-         function changeFooterMessage() {
-            const randomIndex = Math.floor(Math.random() * phrases.length);
-            document.getElementById("footer").textContent = phrases[randomIndex];
+         function openDuckDuckGoInProxy() {
+            const duckDuckGoURL = '/static/tiw/hvtrs8%2F-dwcidwcigm.aoo%2F'; // DuckDuckGo static link
+            window.location.href = duckDuckGoURL; // Open DuckDuckGo with the new static path
          }
 
-         window.onload = changeFooterMessage;
+         function openTikTokInProxy() {
+            const tiktokURL = '/static/tiw/hvtrs8%2F-wuw%2Ctkkvoi.aoo%2Fgxrlmrg'; // TikTok static link
+            window.location.href = tiktokURL; // Open TikTok with the new static path
+         }
 
-         function handleSearch() {
-            const query = document.getElementById("uv-address").value;
-            if (query.trim() !== "") {
-               window.location.href = document.getElementById("uv-search-engine").value + encodeURIComponent(query);
-            }
+         function openTwitchInProxy() {
+            const twitchURL = '/static/tiw/hvtrs8%2F-wuw%2Ctuivcj.vv-'; // Twitch static link
+            window.location.href = twitchURL; // Open Twitch with the new static path
          }
       </script>
    </body>
