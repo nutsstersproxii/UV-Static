@@ -47,9 +47,9 @@
          // About Blank Cloak functionality
          const aboutBlankButton = document.getElementById('about-blank-cloak');
          aboutBlankButton.addEventListener('click', () => {
-            // Change the displayed URL to "about:blank" while keeping site functional
+            // Change the displayed URL to "about:blank"
             history.pushState(null, '', 'about:blank');
-            alert("About Blank Cloak is now active!");
+            alert("About Blank Cloak is now active! The URL bar now displays 'about:blank'.");
          });
 
          // Search functionality
