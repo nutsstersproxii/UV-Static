@@ -20,6 +20,13 @@
             <button type="submit">Search</button>
          </form>
 
+         <div id="settings" style="position: fixed; top: 10px; right: 10px;">
+            <button id="settings-button">Settings ⚙️</button>
+            <div id="settings-menu" style="display: none; background: #f5f5f5; border: 1px solid #ccc; padding: 10px; position: absolute; top: 30px; right: 0; z-index: 100;">
+               <button id="about-blank-cloak">About Blank Cloak</button>
+            </div>
+         </div>
+
          <div class="desc left-margin">
             <p id="uv-error"></p>
             <pre id="uv-error-code"></pre>
@@ -29,6 +36,23 @@
       </div>
 
       <script>
+         // Open/close settings menu
+         const settingsButton = document.getElementById('settings-button');
+         const settingsMenu = document.getElementById('settings-menu');
+
+         settingsButton.addEventListener('click', () => {
+            settingsMenu.style.display = settingsMenu.style.display === 'none' ? 'block' : 'none';
+         });
+
+         // About Blank Cloak functionality
+         const aboutBlankButton = document.getElementById('about-blank-cloak');
+         aboutBlankButton.addEventListener('click', () => {
+            // Change the displayed URL to "about:blank" while keeping site functional
+            history.pushState(null, '', 'about:blank');
+            alert("About Blank Cloak is now active!");
+         });
+
+         // Search functionality
          document.getElementById('uv-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission behavior
 
