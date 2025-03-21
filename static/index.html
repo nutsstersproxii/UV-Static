@@ -84,7 +84,7 @@
             <pre id="uv-error-code"></pre>
          </div>
       </div>
-      <div id="footer">❤️ Made with love by Waffle Lovers! ❤️</div>
+      <div id="footer" onclick="changeFooterMessage()">❤️ Made with love by Waffle Lovers! ❤️</div>
       <script>
          const messages = [
             "❤️ Made with love by Waffle Lovers! ❤️",
@@ -115,9 +115,8 @@
             footer.textContent = messages[Math.floor(Math.random() * messages.length)];
          }
 
-         // Randomize footer message immediately on page load
          window.onload = function () {
-            changeFooterMessage(); // Automatically set a random footer message
+            changeFooterMessage();
             loadFonts(); // Lazy load fonts
          };
 
