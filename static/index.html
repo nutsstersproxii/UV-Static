@@ -7,7 +7,7 @@
       <link rel="stylesheet" href="index.css">
       <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
       <link rel="shortcut icon" type="image/jpg" href="~/favicon.ico"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7YtcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
       <style>
@@ -38,9 +38,9 @@
             <div id="search-engine-selector">
                <label for="search-engine">Choose your search engine:</label>
                <select id="search-engine">
-                  <option value="https://www.google.com/search?q=" selected>Google</option>
-                  <option value="https://www.bing.com/search?q=">Microsoft Bing</option>
-                  <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
+                  <option value="/static/https://www.google.com/search?q=" selected>Google</option>
+                  <option value="/static/https://www.bing.com/search?q=">Microsoft Bing</option>
+                  <option value="/static/https://duckduckgo.com/?q=">DuckDuckGo</option>
                </select>
             </div>
             <button type="submit">Search</button>
@@ -66,19 +66,20 @@
             event.preventDefault(); // Prevent default form submission behavior
 
             const searchInput = document.getElementById('uv-address').value.trim();
-            const selectedSearchEngine = document.getElementById('search-engine').value; // Get selected search engine
+            const selectedSearchEngine = document.getElementById('search-engine').value; // Get selected search engine proxy base
 
             if (isValidURL(searchInput)) {
-               // If the input is a valid URL, navigate to it directly
-               window.location.href = searchInput;
+               // If the input is a valid URL, navigate to it through the proxy
+               const encodedURL = encodeURIComponent(searchInput); // Encode for safe proxy passing
+               window.location.href = `${selectedSearchEngine}${encodedURL}`;
             } else {
-               // If the input isn't a URL, perform a search using the selected search engine
+               // If the input isn't a URL, perform a search through the proxy
                const query = encodeURIComponent(searchInput); // Encode query for safe URL
                window.location.href = `${selectedSearchEngine}${query}`;
             }
          });
 
-         // Helper function to check if a string is a valid URL
+         // Helper function to validate if the input is a URL
          function isValidURL(string) {
             try {
                const url = new URL(string);
