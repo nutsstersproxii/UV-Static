@@ -90,26 +90,26 @@
       <script>
          const messages = [
             "❤️ Made with love by Waffle Lovers! ❤️",
-      "School Chromebooks are so bad.",
-      "Waffles > Pancakes. Change my mind.",
-      "The syrup is the best part!",
-      "Waffle Proxy - Stay crispy!",
-      "Why do waffles have pockets? For extra syrup storage!",
-      "Unblocking the web, one waffle at a time.",
-      "Chromebooks: the device that makes you question life choices.",
-      "I swear my Chromebook has a mind of its own... and it’s evil.",
-      "School Chromebook: 4GB RAM? More like 4GB of frustration.",
-      "Why do Chromebooks have so much lag? It’s like running on a potato!",
-      "I thought Chromebooks were supposed to be faster... turns out it was a lie.",
-      "Trying to open Google Docs on a Chromebook? Good luck with that!",
-      "Chromebooks in class: The silent killer of productivity.",
-      "That feeling when you try to use a Chromebook and the WiFi just gives up.",
-      "Is there a Chromebook emulator for my actual laptop? Asking for a friend...",
-      "When the Chromebook freezes, it’s not your fault, it’s the Chromebook’s fault.",
-      "How do Chromebooks always manage to crash at the worst possible moment?",
-      "Chromebooks are just school’s version of a broken pencil.",
-      "I think my Chromebook is secretly plotting against me.",
-      "Trying to finish homework on a Chromebook is a lesson in patience."
+            "School Chromebooks are so bad.",
+            "Waffles > Pancakes. Change my mind.",
+            "The syrup is the best part!",
+            "Waffle Proxy - Stay crispy!",
+            "Why do waffles have pockets? For extra syrup storage!",
+            "Unblocking the web, one waffle at a time.",
+            "Chromebooks: the device that makes you question life choices.",
+            "I swear my Chromebook has a mind of its own... and it’s evil.",
+            "School Chromebook: 4GB RAM? More like 4GB of frustration.",
+            "Why do Chromebooks have so much lag? It’s like running on a potato!",
+            "I thought Chromebooks were supposed to be faster... turns out it was a lie.",
+            "Trying to open Google Docs on a Chromebook? Good luck with that!",
+            "Chromebooks in class: The silent killer of productivity.",
+            "That feeling when you try to use a Chromebook and the WiFi just gives up.",
+            "Is there a Chromebook emulator for my actual laptop? Asking for a friend...",
+            "When the Chromebook freezes, it’s not your fault, it’s the Chromebook’s fault.",
+            "How do Chromebooks always manage to crash at the worst possible moment?",
+            "Chromebooks are just school’s version of a broken pencil.",
+            "I think my Chromebook is secretly plotting against me.",
+            "Trying to finish homework on a Chromebook is a lesson in patience."
          ];
 
          function changeFooterMessage() {
@@ -118,14 +118,23 @@
          }
 
          window.onload = changeFooterMessage;
-      </script>
-      <script src="uv/uv.bundle.js" defer></script>
-      <script src="uv/uv.config.js" defer></script>
-      <script src="register-sw.js" defer></script>
-      <script src="search.js" defer></script>
-      <script src="index.js" defer></script>
-      <script src="error.js" defer></script>
-      <script>
+
+         // Functions for proxy paths
+         function openDuckDuckGoInProxy() {
+            const proxyPath = "/static/tiw/hvtrs8%2F-dwcidwcigm.aoo%2F";
+            window.location.href = window.location.origin + proxyPath;
+         }
+
+         function openTikTokInProxy() {
+            const proxyPath = "/static/tiw/hvtrs8%2F-wuw%2Ctkkvoi.aoo%2Fgn-";
+            window.location.href = window.location.origin + proxyPath;
+         }
+
+         function openTwitchInProxy() {
+            const proxyPath = "/static/tiw/hvtrs8%2F-wuw%2Ctuivcj.vv-";
+            window.location.href = window.location.origin + proxyPath;
+         }
+
          function handleSearch() {
             const searchQuery = document.getElementById("uv-address").value;
             if (searchQuery) {
@@ -133,5 +142,11 @@
             }
          }
       </script>
+      <script src="uv/uv.bundle.js" defer></script>
+      <script src="uv/uv.config.js" defer></script>
+      <script src="register-sw.js" defer></script>
+      <script src="search.js" defer></script>
+      <script src="index.js" defer></script>
+      <script src="error.js" defer></script>
    </body>
 </html>
