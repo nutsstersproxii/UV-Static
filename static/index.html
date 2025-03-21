@@ -38,6 +38,60 @@
             margin-top: 5px;
             text-align: center;
          }
+         .add-link-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+         }
+         .add-link-input {
+            width: 80%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+         }
+         .add-link-button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #4CAF50;
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+         }
+         .add-link-button:hover {
+            background: #45a049;
+         }
+         .custom-links-list {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+         }
+         .custom-link-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+         }
+         .custom-link-item a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-family: 'Open Sans', sans-serif;
+         }
+         .custom-link-item a:hover {
+            text-decoration: underline;
+         }
+         .delete-link-button {
+            border: none;
+            background: red;
+            color: white;
+            border-radius: 3px;
+            cursor: pointer;
+            padding: 2px 5px;
+         }
       </style>
    </head>
    <body>
@@ -72,6 +126,15 @@
             </div>
          </div>
 
+         <!-- Add Your Own Link -->
+         <div class="add-link-container">
+            <input type="text" id="custom-link" placeholder="Enter your link here" class="add-link-input">
+            <button class="add-link-button" onclick="addCustomLink()">Add Link</button>
+         </div>
+
+         <!-- Custom Links List -->
+         <div id="custom-links-list" class="custom-links-list"></div>
+
          <div class="desc left-margin">
             <p id="uv-error"></p>
             <pre id="uv-error-code"></pre>
@@ -101,6 +164,44 @@
             const twitchURL = '/static/tiw/hvtrs8%2F-wuw%2Ctuivcj.vv-'; // Twitch static link
             window.location.href = twitchURL; // Open Twitch with the new static path
          }
+
+         function loadCustomLinks() {
+            const savedLinks = JSON.parse(localStorage.getItem('customLinks')) || [];
+            const customLinksList = document.getElementById('custom-links-list');
+            customLinksList.innerHTML = ''; // Clear the list before rendering
+            savedLinks.forEach(link => {
+               const linkItem = document.createElement('div');
+               linkItem.className = 'custom-link-item';
+               linkItem.innerHTML = `
+                  <a href="/static/${encodeURIComponent(link)}" target="_blank">${link}</a>
+                  <button class="delete-link-button" onclick="deleteCustomLink('${link}')">X</button>
+               `;
+               customLinksList.appendChild(linkItem);
+            });
+         }
+
+         function addCustomLink() {
+            const customLink = document.getElementById('custom-link').value.trim();
+            if (customLink) {
+               const savedLinks = JSON.parse(localStorage.getItem('customLinks')) || [];
+               savedLinks.push(customLink);
+               localStorage.setItem('customLinks', JSON.stringify(savedLinks));
+               document.getElementById('custom-link').value = ''; // Clear the input field
+               loadCustomLinks(); // Reload the list
+            } else {
+               alert('Please enter a valid link.');
+            }
+         }
+
+         function deleteCustomLink(link) {
+            let savedLinks = JSON.parse(localStorage.getItem('customLinks')) || [];
+            savedLinks = savedLinks.filter(savedLink => savedLink !== link);
+            localStorage.setItem('customLinks', JSON.stringify(savedLinks));
+            loadCustomLinks(); // Reload the list
+         }
+
+         // Load custom links on page load
+         window.onload = loadCustomLinks;
       </script>
    </body>
 </html>
