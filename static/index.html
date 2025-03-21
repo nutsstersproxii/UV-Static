@@ -2,7 +2,7 @@
 <html>
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Waffle Proxy - Search Engine Selector</title>
+      <title>Waffle Proxy - Functional Search</title>
       <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
       <link rel="stylesheet" href="index.css">
       <style>
@@ -29,9 +29,9 @@
             <div id="search-engine-selector">
                <label for="search-engine">Choose your search engine:</label>
                <select id="search-engine">
-                  <option value="https://www.google.com/search?q=" selected>Google</option>
-                  <option value="https://www.bing.com/search?q=">Microsoft Bing</option>
-                  <option value="https://duckduckgo.com/?q=">DuckDuckGo</option>
+                  <option value="google">Google</option>
+                  <option value="bing">Microsoft Bing</option>
+                  <option value="duckduckgo">DuckDuckGo</option>
                </select>
             </div>
             <button type="submit">Search</button>
@@ -44,22 +44,26 @@
 
             const searchInput = document.getElementById('uv-address').value.trim();
             const selectedSearchEngine = document.getElementById('search-engine').value;
+            const proxyBase = "/static/"; // Base proxy path
 
-            const proxyBase = "/static/tiw/"; // Adjust this as per your proxy’s requirement
             let encodedURL;
-
             if (isValidURL(searchInput)) {
                // If it's a valid URL, encode it for the proxy
-               encodedURL = encodeURIComponent(searchInput); // Adjust the encoding method if required
+               encodedURL = encodeURIComponent(searchInput);
+               window.location.href = `${proxyBase}${encodedURL}`;
             } else {
-               // If it's a search term, create the search URL and encode it for the proxy
-               const searchQuery = encodeURIComponent(searchInput);
-               const searchEngineURL = `${selectedSearchEngine}${searchQuery}`;
-               encodedURL = encodeURIComponent(searchEngineURL); // Encode the entire URL for the proxy
+               // Handle search query based on the selected search engine
+               let searchEngineURL;
+               if (selectedSearchEngine === "google") {
+                  searchEngineURL = `https://www.google.com/search?q=${encodeURIComponent(searchInput)}`;
+               } else if (selectedSearchEngine === "bing") {
+                  searchEngineURL = `https://www.bing.com/search?q=${encodeURIComponent(searchInput)}`;
+               } else if (selectedSearchEngine === "duckduckgo") {
+                  searchEngineURL = `https://duckduckgo.com/?q=${encodeURIComponent(searchInput)}`;
+               }
+               encodedURL = encodeURIComponent(searchEngineURL);
+               window.location.href = `${proxyBase}${encodedURL}`;
             }
-
-            // Redirect to the encoded URL via the proxy
-            window.location.href = `${proxyBase}${encodedURL}`;
          });
 
          function isValidURL(string) {
