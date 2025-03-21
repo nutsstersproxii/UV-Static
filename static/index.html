@@ -54,10 +54,10 @@
    <body>
       <div id="header"></div>
       <div id="content">
-         <h1>Waffle Proxy</h1>
+         <h1>Waffle Proxy!🧇</h1>
 
-         <form id="uv-form">
-            <input id="uv-search-engine" value="google.com/search" type="hidden"/> 
+         <form id="uv-form" onsubmit="event.preventDefault(); handleSearch();">
+            <input id="uv-search-engine" value="https://www.google.com/search?q=" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
          </form>
 
@@ -112,6 +112,13 @@
          }
 
          window.onload = changeFooterMessage;
+
+         function handleSearch() {
+            const query = document.getElementById("uv-address").value;
+            if (query.trim() !== "") {
+               window.location.href = document.getElementById("uv-search-engine").value + encodeURIComponent(query);
+            }
+         }
       </script>
    </body>
 </html>
