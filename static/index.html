@@ -2,11 +2,13 @@
 <html>
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta http-equiv="Cache-Control" content="max-age=31536000">
       <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
       <link rel="stylesheet" href="index.css">
       <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
       <link rel="shortcut icon" type="image/jpg" href="~/favicon.ico"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7YtcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
       <style>
          .button-container {
             margin-top: 20px;
@@ -54,7 +56,7 @@
       <div id="content">
          <h1>Waffle Proxy</h1>
 
-         <form id="uv-form" onsubmit="event.preventDefault(); debounceHandleSearch();">
+         <form id="uv-form" onsubmit="event.preventDefault(); handleSearch();">
             <input id="uv-search-engine" value="google.com/search" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
          </form>
@@ -115,19 +117,9 @@
             footer.textContent = messages[Math.floor(Math.random() * messages.length)];
          }
 
-         window.onload = function () {
-            changeFooterMessage();
-            loadFonts(); // Lazy load fonts
-         };
+         window.onload = changeFooterMessage;
 
-         function loadFonts() {
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.href = "https://fonts.googleapis.com/css2?family=Open+Sans&display=swap";
-            document.head.appendChild(link);
-         }
-
-         // Proxy functions
+         // Functions for proxy paths
          function openDuckDuckGoInProxy() {
             const proxyPath = "/static/tiw/hvtrs8%2F-dwcidwcigm.aoo%2F";
             window.location.href = window.location.origin + proxyPath;
@@ -143,23 +135,12 @@
             window.location.href = window.location.origin + proxyPath;
          }
 
-         // Debounced search handler
-         const debounce = (func, delay) => {
-            let timeout;
-            return function (...args) {
-               clearTimeout(timeout);
-               timeout = setTimeout(() => func.apply(this, args), delay);
-            };
-         };
-
-         const handleSearch = () => {
+         function handleSearch() {
             const searchQuery = document.getElementById("uv-address").value;
             if (searchQuery) {
                window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
             }
-         };
-
-         const debounceHandleSearch = debounce(handleSearch, 300); // Add 300ms debounce
+         }
       </script>
       <script src="uv/uv.bundle.js" defer></script>
       <script src="uv/uv.config.js" defer></script>
