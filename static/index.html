@@ -36,8 +36,8 @@
             const searchEngine = document.getElementById('uv-search-engine').value;
 
             if (isValidURL(searchInput)) {
-               // If the input is a valid URL, navigate to it through the proxy
-               window.location.href = `${searchEngine}${searchInput}`;
+               // If the input is a valid URL, navigate to it directly
+               window.location.href = searchInput;
             } else {
                // If the input isn't a URL, perform a DuckDuckGo search through the proxy
                const searchQuery = encodeURIComponent(searchInput); // Encode query to ensure it works in a URL
@@ -48,8 +48,8 @@
          // Helper function to check if a string is a valid URL
          function isValidURL(string) {
             try {
-               new URL(string);
-               return true;
+               const url = new URL(string);
+               return url.protocol === "http:" || url.protocol === "https:";
             } catch (_) {
                return false;
             }
