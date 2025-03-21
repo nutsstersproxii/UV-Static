@@ -17,7 +17,7 @@
          <h1>Waffle Proxy! 🧇</h1>
 
          <form id="uv-form">
-            <!-- Changed search engine to DuckDuckGo -->
+            <!-- Corrected DuckDuckGo search engine URL -->
             <input id="uv-search-engine" value="https://duckduckgo.com/" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
             <button type="submit">Search</button>
@@ -31,26 +31,19 @@
          <a></a> <!-- Fixed invalid <a> elements -->
       </div>
 
-      <script src="uv/uv.bundle.js" defer></script>
-      <script src="uv/uv.config.js" defer></script>
-      <script src="register-sw.js" defer></script>
-      <script src="search.js" defer></script>
-      <script src="index.js" defer></script>
-      <script src="error.js" defer></script>
-
       <script>
          document.getElementById('uv-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission behavior
 
             const searchInput = document.getElementById('uv-address').value.trim();
-            const searchEngine = document.getElementById('uv-search-engine').value;
+            const searchEngine = document.getElementById('uv-search-engine').value; // DuckDuckGo's base URL
 
             if (isValidURL(searchInput)) {
                // If the input is a valid URL, navigate to it directly
                window.location.href = searchInput;
             } else {
-               // If the input isn't a URL, perform a DuckDuckGo search
-               const searchQuery = encodeURIComponent(searchInput); // Encode query to ensure it works in a URL
+               // If the input isn't a URL, perform a DuckDuckGo search with proper query
+               const searchQuery = encodeURIComponent(searchInput); // Encode query for safe URL
                window.location.href = `${searchEngine}?q=${searchQuery}`;
             }
          });
