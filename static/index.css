@@ -1,46 +1,86 @@
-/* Custom CSS for a Waffle Theme */
+/* Modern Waffle-Themed CSS */
 body {
-  background-color: #f8e0b9; /* Soft waffle batter color */
-  color: #6b3f1d; /* Rich syrupy text color */
+  background: linear-gradient(to bottom, #f8e0b9, #f3c98b); /* Soft waffle batter gradient */
+  color: #5a2d0c; /* Rich syrupy text color */
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Content Styling */
 #content {
   text-align: center;
-  padding: 20px;
+  padding: 40px;
+  max-width: 800px;
+  width: 90%;
 }
 
+/* Modernized Header */
 #content h1 {
-  font-size: 32px;
-  cursor: pointer;
+  font-size: 36px;
+  font-weight: 700;
   text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
-  line-height: 1.5;
-  margin-bottom: 20px;
-  background-color: #f5c97b; /* Waffle golden brown */
-  color: #6b3f1d; /* Syrup color */
-  border: 3px solid #e0a55f; /* Crisp waffle edges */
-  padding: 12px;
-  border-radius: 8px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #f5c97b, #e8a75d); /* Golden waffle gradient */
+  color: #5a2d0c;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
+#content h1:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Modern Input Field */
 .form__input {
-  padding: 10px;
-  border: 2px solid #8b5e34; /* Crisp outline */
-  border-radius: 5px;
-  font-size: 16px;
-  width: 300px;
-  background-color: #f7c779; /* Warm, toasty waffle interior */
-  color: #6b3f1d;
+  padding: 12px;
+  border: 2px solid #a46b3e; /* Crisp outline */
+  border-radius: 8px;
+  font-size: 18px;
+  width: 320px;
+  background: linear-gradient(to bottom, #f7c779, #f0b864); /* Warm waffle color */
+  color: #5a2d0c;
+  outline: none;
+  transition: all 0.3s ease-in-out;
 }
 
+.form__input:focus {
+  border-color: #e38b29; /* Slightly deeper waffle edge */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Modern Button */
+.button {
+  background: linear-gradient(to right, #e38b29, #c7732b); /* Syrupy waffle topping */
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: linear-gradient(to right, #d67a1c, #b26020);
+  transform: scale(1.05);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
 #footer {
-  background-color: #e8a75d; /* Slightly darker waffle edge */
-  color: #6b3f1d;
-  padding: 15px;
+  background: linear-gradient(to right, #e8a75d, #d89050);
+  color: #5a2d0c;
+  padding: 20px;
   text-align: center;
-  border-top: 3px solid #d89050; /* Waffle crust */
+  border-top: 4px solid #c7753a; /* Deeper waffle crust */
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
 }
