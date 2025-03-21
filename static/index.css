@@ -1,7 +1,7 @@
 /* Custom CSS for a Waffle Theme */
 body {
-  background-color: #f5d6a4; /* Warm, soft waffle beige */
-  color: #5c3b1e; /* Rich syrupy text color */
+  background-color: #f8e0b9; /* Soft waffle batter color */
+  color: #6b3f1d; /* Rich syrupy text color */
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
@@ -19,12 +19,12 @@ body {
   font-family: 'Open Sans', sans-serif;
   line-height: 1.5;
   margin-bottom: 20px;
-  background-color: #f7d794; /* Lighter waffle tone */
-  color: #5c3b1e; /* Syrup color */
-  border: 3px solid #e0b878; /* Slightly darker waffle grid */
+  background-color: #f5c97b; /* Waffle golden brown */
+  color: #6b3f1d; /* Syrup color */
+  border: 3px solid #e0a55f; /* Crisp waffle edges */
   padding: 12px;
   border-radius: 8px;
-  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .form__input {
@@ -33,13 +33,14 @@ body {
   border-radius: 5px;
   font-size: 16px;
   width: 300px;
-  background-color: #f5c890; /* Golden brown waffle tone */
-  color: #5c3b1e;
+  background-color: #f7c779; /* Warm, toasty waffle interior */
+  color: #6b3f1d;
 }
 
 #footer {
-  background-color: #f4b860; /* Slightly darker waffle edge color */
-  color: #5c3b1e;
+  background-color: #e8a75d; /* Slightly darker waffle edge */
+  color: #6b3f1d;
   padding: 15px;
   text-align: center;
+  border-top: 3px solid #d89050; /* Waffle crust */
 }
