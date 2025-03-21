@@ -25,12 +25,12 @@
             background: none;
             border: none;
             cursor: pointer;
-            padding: 0; /* Remove any padding for a clean look */
+            padding: 0;
          }
          .proxy-button img {
             width: 30px;
             height: 30px;
-            border: none; /* Remove any border */
+            border: none;
          }
          .button-label {
             font-family: 'Open Sans', sans-serif;
@@ -38,19 +38,29 @@
             margin-top: 5px;
             text-align: center;
          }
+         #footer {
+            background: linear-gradient(to right, #e8a75d, #d89050);
+            color: #5a2d0c;
+            padding: 20px;
+            text-align: center;
+            border-top: 4px solid #c7753a;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+         }
       </style>
    </head>
    <body>
       <div id="header"></div>
       <div id="content">
-         <h1>Waffle Proxy!🧇</h1>
+         <h1>Waffle Proxy</h1>
 
-         <form id="uv-form">
+         <form id="uv-form" onsubmit="event.preventDefault(); handleSearch();">
             <input id="uv-search-engine" value="google.com/search" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
          </form>
 
-         <!-- Buttons Side by Side -->
          <div class="button-container">
             <div class="button-group">
                <button class="proxy-button" onclick="openDuckDuckGoInProxy()">
@@ -71,15 +81,44 @@
                <div class="button-label">Twitch</div>
             </div>
          </div>
-
          <div class="desc left-margin">
             <p id="uv-error"></p>
             <pre id="uv-error-code"></pre>
          </div>
-
-         <a></a> <!-- Fixed invalid <a> elements -->
       </div>
+      <div id="footer" onclick="changeFooterMessage()">❤️ Made with love by Waffle Lovers! ❤️</div>
+      <script>
+         const messages = [
+            "❤️ Made with love by Waffle Lovers! ❤️",
+      "School Chromebooks are so bad.",
+      "Waffles > Pancakes. Change my mind.",
+      "The syrup is the best part!",
+      "Waffle Proxy - Stay crispy!",
+      "Why do waffles have pockets? For extra syrup storage!",
+      "Unblocking the web, one waffle at a time.",
+      "Chromebooks: the device that makes you question life choices.",
+      "I swear my Chromebook has a mind of its own... and it’s evil.",
+      "School Chromebook: 4GB RAM? More like 4GB of frustration.",
+      "Why do Chromebooks have so much lag? It’s like running on a potato!",
+      "I thought Chromebooks were supposed to be faster... turns out it was a lie.",
+      "Trying to open Google Docs on a Chromebook? Good luck with that!",
+      "Chromebooks in class: The silent killer of productivity.",
+      "That feeling when you try to use a Chromebook and the WiFi just gives up.",
+      "Is there a Chromebook emulator for my actual laptop? Asking for a friend...",
+      "When the Chromebook freezes, it’s not your fault, it’s the Chromebook’s fault.",
+      "How do Chromebooks always manage to crash at the worst possible moment?",
+      "Chromebooks are just school’s version of a broken pencil.",
+      "I think my Chromebook is secretly plotting against me.",
+      "Trying to finish homework on a Chromebook is a lesson in patience."
+         ];
 
+         function changeFooterMessage() {
+            const footer = document.getElementById("footer");
+            footer.textContent = messages[Math.floor(Math.random() * messages.length)];
+         }
+
+         window.onload = changeFooterMessage;
+      </script>
       <script src="uv/uv.bundle.js" defer></script>
       <script src="uv/uv.config.js" defer></script>
       <script src="register-sw.js" defer></script>
@@ -87,19 +126,11 @@
       <script src="index.js" defer></script>
       <script src="error.js" defer></script>
       <script>
-         function openDuckDuckGoInProxy() {
-            const duckDuckGoURL = '/static/tiw/hvtrs8%2F-dwcidwcigm.aoo%2F'; // DuckDuckGo static link
-            window.location.href = duckDuckGoURL; // Open DuckDuckGo with the new static path
-         }
-
-         function openTikTokInProxy() {
-            const tiktokURL = '/static/tiw/hvtrs8%2F-wuw%2Ctkkvoi.aoo%2Fgxrlmrg'; // TikTok static link
-            window.location.href = tiktokURL; // Open TikTok with the new static path
-         }
-
-         function openTwitchInProxy() {
-            const twitchURL = '/static/tiw/hvtrs8%2F-wuw%2Ctuivcj.vv-'; // Twitch static link
-            window.location.href = twitchURL; // Open Twitch with the new static path
+         function handleSearch() {
+            const searchQuery = document.getElementById("uv-address").value;
+            if (searchQuery) {
+               window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
+            }
          }
       </script>
    </body>
