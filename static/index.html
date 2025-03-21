@@ -5,7 +5,7 @@
       <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
       <link rel="stylesheet" href="index.css">
       <link rel="shortcut icon" type="image/jpg" href="~/favicon.ico"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7YtcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7YtcenmpFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
       <style>
@@ -90,7 +90,7 @@
       <!-- Import particles.js -->
       <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
       <script>
-         // Initialize particles.js with black particles and connecting lines
+         // Initialize particles.js with black particles and no connecting lines
          particlesJS('particles-js', {
             "particles": {
                "number": {
@@ -123,11 +123,7 @@
                   "random": true
                },
                "line_linked": {
-                  "enable": true, /* Enable connecting lines */
-                  "distance": 150,
-                  "color": "#000000", /* Black connecting lines */
-                  "opacity": 0.6,
-                  "width": 1
+                  "enable": false /* Remove connecting lines */
                },
                "move": {
                   "enable": true,
