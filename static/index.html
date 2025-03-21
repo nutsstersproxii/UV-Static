@@ -2,7 +2,7 @@
 <html>
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Waffle Proxy</title>
+      <title>Waffle Proxy - DuckDuckGo via Proxy</title>
       <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
       <link rel="stylesheet" href="index.css">
       <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
@@ -35,7 +35,7 @@
    <body>
       <!-- Banner at the top -->
       <div id="banner">
-         You are searching through the proxy! If you'd like to visit DuckDuckGo directly through the proxy, click <a href="/static/tiw/hvtrs8%2F-dwcidwcigm.aoo%2F" target="_blank">DuckDuckGo</a>.
+         Go to <a href="https://duckduckgo.com" target="_blank">DuckDuckGo.com</a> to search without needing a website link.
       </div>
 
       <div id="header"></div>
@@ -43,6 +43,7 @@
          <h1>Waffle Proxy! 🧇</h1>
 
          <form id="uv-form">
+            <input id="uv-search-engine" value="/static/https://duckduckgo.com/" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
             <button type="submit">Search</button>
          </form>
@@ -61,36 +62,5 @@
       <script src="search.js" defer></script>
       <script src="index.js" defer></script>
       <script src="error.js" defer></script>
-
-      <script>
-         document.getElementById('uv-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission behavior
-
-            const searchInput = document.getElementById('uv-address').value.trim();
-            const proxyBase = "/static/tiw/"; // Your proxy's base format
-
-            if (isValidURL(searchInput)) {
-               // If the input is a valid URL, encode it for the proxy
-               const encodedURL = encodeURIComponent(searchInput); // Encode the URL
-               window.location.href = `${proxyBase}${encodedURL}`;
-            } else {
-               // If it's a search term, construct a DuckDuckGo search URL and encode it
-               const query = encodeURIComponent(searchInput); // Encode the search query
-               const duckDuckGoURL = `https://duckduckgo.com/?q=${query}`;
-               const encodedSearch = encodeURIComponent(duckDuckGoURL); // Encode for proxy
-               window.location.href = `${proxyBase}${encodedSearch}`;
-            }
-         });
-
-         // Helper function to validate if the input is a URL
-         function isValidURL(string) {
-            try {
-               const url = new URL(string);
-               return url.protocol === "http:" || url.protocol === "https:";
-            } catch (_) {
-               return false;
-            }
-         }
-      </script>
    </body>
 </html>
