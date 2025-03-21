@@ -5,56 +5,27 @@
       <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
       <link rel="stylesheet" href="index.css">
       <link rel="shortcut icon" type="image/jpg" href="~/favicon.ico"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7YtcenmpFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-      <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7YtcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
       <style>
-         /* Alien-inspired particle background */
+         /* Particle background styles */
          #particles-js {
             position: absolute;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Keeps particles behind content */
-            background: radial-gradient(ellipse at center, #0f0f1f, #1c1c40); /* Deep futuristic gradient */
+            z-index: -1; /* Keeps particles behind the site content */
          }
          body {
             margin: 0;
             font-family: 'Open Sans', sans-serif;
-            color: #e0e0e0;
             overflow-x: hidden;
          }
-         h1 {
-            font-family: 'Orbitron', sans-serif; /* Sci-fi inspired font */
-            font-weight: 500;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-top: 20px;
-            color: #00ffcc; /* Alien-like green */
-            text-shadow: 0px 0px 15px rgba(0, 255, 204, 0.8); /* Glowing text */
-            background: none; /* No background box */
-         }
-         .form__input {
-            display: block;
-            margin: 20px auto;
-            padding: 12px;
-            font-size: 1rem;
-            border-radius: 15px; /* Sleek rounded input */
-            border: 2px solid #00ffcc; /* Glow effect */
-            width: 70%;
-            background: rgba(0, 0, 0, 0.4);
-            color: #ffffff;
-            text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8); /* Subtle input glow */
-            outline: none;
-            box-shadow: 0px 4px 6px rgba(0, 255, 204, 0.2); /* Slight elevation */
-         }
-         .form__input:focus {
-            border-color: #1affec;
-            box-shadow: 0px 0px 10px #1affec;
-         }
          .button-container {
-            margin-top: 30px;
+            margin-top: 20px;
             display: flex;
             justify-content: center;
-            gap: 50px; /* Wider spacing for a clean look */
+            gap: 20px;
          }
          .button-group {
             display: flex;
@@ -66,24 +37,16 @@
             border: none;
             cursor: pointer;
             padding: 0;
-            transition: transform 0.4s ease, filter 0.4s ease; /* Smooth futuristic effect */
          }
          .proxy-button img {
-            width: 50px; /* Larger icons */
-            height: 50px;
-            filter: drop-shadow(0px 4px 8px rgba(0, 255, 204, 0.6)); /* Alien glow shadow */
-         }
-         .proxy-button:hover {
-            transform: scale(1.2); /* Slight zoom on hover */
-            filter: drop-shadow(0px 4px 12px rgba(0, 255, 204, 0.8)); /* Stronger glow */
+            width: 30px;
+            height: 30px;
          }
          .button-label {
             font-family: 'Open Sans', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-top: 10px;
-            color: #00ffcc; /* Matches the alien aesthetic */
-            text-shadow: 0px 0px 6px rgba(0, 255, 204, 0.8);
+            font-size: 12px;
+            margin-top: 5px;
+            text-align: center;
          }
       </style>
    </head>
@@ -91,8 +54,9 @@
       <!-- Particle background -->
       <div id="particles-js"></div>
 
+      <div id="header"></div>
       <div id="content">
-         <h1>waffle proxy! 🧇</h1>
+         <h1>Waffle Proxy!🧇</h1>
          <form id="uv-form">
             <input id="uv-search-engine" value="google.com/search" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
@@ -126,17 +90,17 @@
       <!-- Import particles.js -->
       <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
       <script>
-         // Initialize particles.js with glowing teal particles
+         // Initialize particles.js
          particlesJS('particles-js', {
             "particles": {
                "number": {
-                  "value": 120,
+                  "value": 100,
                   "density": {
                      "enable": true,
                      "value_area": 800
                   }
                },
-               "color": { "value": "#00ffcc" }, /* Futuristic teal glow */
+               "color": { "value": "#ffffff" },
                "shape": {
                   "type": "circle",
                   "stroke": {
@@ -145,49 +109,26 @@
                   }
                },
                "opacity": {
-                  "value": 0.7,
-                  "random": false
+                  "value": 0.5,
+                  "random": false,
+                  "anim": {
+                     "enable": false,
+                     "speed": 1,
+                     "opacity_min": 0.1,
+                     "sync": false
+                  }
                },
                "size": {
-                  "value": 6, /* Larger particles */
+                  "value": 3,
                   "random": true
-               },
-               "line_linked": {
-                  "enable": false /* No connecting lines */
                },
                "move": {
                   "enable": true,
-                  "speed": 2.5,
+                  "speed": 2,
                   "direction": "none",
-                  "random": false,
-                  "straight": false,
                   "out_mode": "out"
                }
-            },
-            "interactivity": {
-               "detect_on": "canvas",
-               "events": {
-                  "onhover": {
-                     "enable": true,
-                     "mode": "repulse"
-                  },
-                  "onclick": {
-                     "enable": true,
-                     "mode": "push"
-                  },
-                  "resize": true
-               },
-               "modes": {
-                  "repulse": {
-                     "distance": 150,
-                     "duration": 0.5
-                  },
-                  "push": {
-                     "particles_nb": 5
-                  }
-               }
-            },
-            "retina_detect": true
+            }
          });
 
          function openDuckDuckGoInProxy() {
