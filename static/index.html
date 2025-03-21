@@ -6,35 +6,57 @@
       <link rel="stylesheet" href="index.css">
       <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
       <link rel="shortcut icon" type="image/jpg" href="~/favicon.ico"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+
+      <script>
+         // Disable browser notifications
+         if ("Notification" in window) {
+            Notification.requestPermission = function() {
+               return Promise.resolve("denied");
+            };
+            window.Notification = function() {
+               throw new Error("Notifications are disabled.");
+            };
+         }
+
+         // Disable permission requests
+         if (navigator.permissions) {
+            navigator.permissions.query = async function (permissionDesc) {
+               if (permissionDesc.name === "notifications") {
+                  return { state: "denied", onchange: null };
+               }
+               return await Promise.resolve({ state: "granted", onchange: null });
+            };
+         }
+      </script>
    </head>
    <body>
-      <div id="header">
-   
-      </div>
+      <div id="header"></div>
       <div id="content">
          <h1>Waffle Proxy!🧇</h1>
 
-         <form id="uv-form"">
+         <form id="uv-form">
             <input id="uv-search-engine" value="https://www.duckduckgo.com/" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
-          </form>
-          <div class="desc left-margin">
+         </form>
+
+         <div class="desc left-margin">
             <p id="uv-error"></p>
             <pre id="uv-error-code"></pre>
-          </div>
-         <a 
-         <a 
-         <a
+         </div>
+
+         <a></a> <!-- Fixed invalid <a> elements -->
       </div>
+
       <script src="uv/uv.bundle.js" defer></script>
       <script src="uv/uv.config.js" defer></script>
       <script src="register-sw.js" defer></script>
       <script src="search.js" defer></script>
       <script src="index.js" defer></script>
       <script src="error.js" defer></script>
+
       <div id="footer">
          <p>&copy; Waffle Proxy On Top.</p>
       </div>
