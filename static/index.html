@@ -2,82 +2,83 @@
 <html>
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-      <link rel="stylesheet" href="index.css">
-      <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
-      <link rel="shortcut icon" type="image/jpg" href="~/favicon.ico"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-      <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+      <title>Theme Changer</title>
+      <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+         }
+
+         #theme-changer {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: #f3f3f3;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 100;
+            width: 200px;
+         }
+
+         .slider-container {
+            margin-bottom: 10px;
+         }
+
+         .slider-container label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+         }
+
+         .slider-container input {
+            width: 100%;
+         }
+      </style>
    </head>
    <body>
+      <div id="theme-changer">
+         <h3>Theme Customizer</h3>
+         <div class="slider-container">
+            <label for="bg-color">Background Color</label>
+            <input type="color" id="bg-color" value="#f5d6a4">
+         </div>
+         <div class="slider-container">
+            <label for="text-color">Text Color</label>
+            <input type="color" id="text-color" value="#4a2c12">
+         </div>
+         <div class="slider-container">
+            <label for="border-color">Border Color</label>
+            <input type="color" id="border-color" value="#f3c798">
+         </div>
+         <div class="slider-container">
+            <label for="font-size">Font Size</label>
+            <input type="range" id="font-size" min="12" max="48" value="16">
+         </div>
+         <button id="apply-theme">Apply Theme</button>
+      </div>
+
       <div id="content">
-         <h1>Waffle Proxy! 🧇</h1>
-
-         <form id="uv-form">
-            <input id="uv-search-engine" value="https://www.duckduckgo.com/" type="hidden"/> 
-            <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
-            <button type="submit">Search</button>
-         </form>
-
-         <div id="settings" style="position: fixed; top: 10px; right: 10px;">
-            <button id="settings-button">Settings ⚙️</button>
-            <div id="settings-menu" style="display: none; background: #f5f5f5; border: 1px solid #ccc; padding: 10px; position: absolute; top: 30px; right: 0; z-index: 100;">
-               <button id="about-blank-cloak">About Blank Cloak</button>
-            </div>
-         </div>
-
-         <div class="desc left-margin">
-            <p id="uv-error"></p>
-            <pre id="uv-error-code"></pre>
-         </div>
-
-         <a></a> <!-- Fixed invalid <a> elements -->
+         <h1>Customizable Theme Example 🧇</h1>
+         <p>Use the sliders to customize the theme dynamically.</p>
       </div>
 
       <script>
-         // Open/close settings menu
-         const settingsButton = document.getElementById('settings-button');
-         const settingsMenu = document.getElementById('settings-menu');
+         // Theme customizer logic
+         const bgColorInput = document.getElementById('bg-color');
+         const textColorInput = document.getElementById('text-color');
+         const borderColorInput = document.getElementById('border-color');
+         const fontSizeInput = document.getElementById('font-size');
+         const applyButton = document.getElementById('apply-theme');
+         const content = document.getElementById('content');
 
-         settingsButton.addEventListener('click', () => {
-            settingsMenu.style.display = settingsMenu.style.display === 'none' ? 'block' : 'none';
+         applyButton.addEventListener('click', () => {
+            // Apply theme changes
+            document.body.style.backgroundColor = bgColorInput.value;
+            content.style.color = textColorInput.value;
+            content.style.border = `2px solid ${borderColorInput.value}`;
+            content.style.fontSize = `${fontSizeInput.value}px`;
          });
-
-         // About Blank Cloak functionality
-         const aboutBlankButton = document.getElementById('about-blank-cloak');
-         aboutBlankButton.addEventListener('click', () => {
-            // Change the displayed URL to "about:blank"
-            history.pushState(null, '', 'about:blank');
-            alert("About Blank Cloak is now active! The URL bar now displays 'about:blank'.");
-         });
-
-         // Search functionality
-         document.getElementById('uv-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission behavior
-
-            const searchInput = document.getElementById('uv-address').value.trim();
-            const searchEngine = document.getElementById('uv-search-engine').value;
-
-            if (isValidURL(searchInput)) {
-               // If the input is a valid URL, navigate to it directly
-               window.location.href = searchInput;
-            } else {
-               // If the input isn't a URL, perform a DuckDuckGo search through the proxy
-               const searchQuery = encodeURIComponent(searchInput); // Encode query to ensure it works in a URL
-               window.location.href = `${searchEngine}?q=${searchQuery}`;
-            }
-         });
-
-         // Helper function to check if a string is a valid URL
-         function isValidURL(string) {
-            try {
-               const url = new URL(string);
-               return url.protocol === "http:" || url.protocol === "https:";
-            } catch (_) {
-               return false;
-            }
-         }
       </script>
    </body>
 </html>
