@@ -38,29 +38,6 @@
             margin-top: 5px;
             text-align: center;
          }
-         .settings-panel {
-            display: none;
-            position: absolute;
-            top: 50px;
-            right: 20px;
-            background: white;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-         }
-         .settings-panel label, .settings-panel select {
-            font-family: 'Open Sans', sans-serif;
-            margin-bottom: 10px;
-         }
-         .slider-container {
-            display: none;
-            margin-top: 10px;
-         }
-         .slider-container label {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 12px;
-         }
       </style>
    </head>
    <body>
@@ -87,31 +64,11 @@
                </button>
                <div class="button-label">TikTok</div>
             </div>
-            <button class="proxy-button" onclick="toggleSettingsPanel()">
-               <img src="https://cdn-icons-png.flaticon.com/512/2099/2099058.png" alt="Settings">
-            </button>
-         </div>
-
-         <!-- Settings Panel -->
-         <div id="settings-panel" class="settings-panel">
-            <label for="theme-select">Choose Theme:</label>
-            <select id="theme-select" onchange="changeTheme(this.value)">
-               <option value="default">Default</option>
-               <option value="light">Light</option>
-               <option value="dark">Dark</option>
-               <option value="nature">Nature</option>
-               <option value="retro">Retro</option>
-               <option value="custom">Custom</option>
-            </select>
-
-            <!-- Custom Theme Sliders -->
-            <div id="slider-container" class="slider-container">
-               <label>Background Color:</label>
-               <input type="color" id="bg-color-slider" onchange="updateCustomTheme()"><br>
-               <label>Text Color:</label>
-               <input type="color" id="text-color-slider" onchange="updateCustomTheme()"><br>
-               <label>Button Color:</label>
-               <input type="color" id="button-color-slider" onchange="updateCustomTheme()">
+            <div class="button-group">
+               <button class="proxy-button" onclick="openTwitchInProxy()">
+                  <img src="https://www.twitch.tv/favicon.ico" alt="Twitch">
+               </button>
+               <div class="button-label">Twitch</div>
             </div>
          </div>
 
@@ -140,71 +97,9 @@
             window.location.href = tiktokURL; // Open TikTok with the new static path
          }
 
-         function toggleSettingsPanel() {
-            const panel = document.getElementById('settings-panel');
-            panel.style.display = panel.style.display === 'none' || panel.style.display === '' ? 'block' : 'none';
-         }
-
-         function changeTheme(theme) {
-            const sliderContainer = document.getElementById('slider-container');
-            switch (theme) {
-               case 'default':
-                  resetTheme();
-                  sliderContainer.style.display = 'none';
-                  break;
-               case 'light':
-                  applyTheme('white', 'black', '#f0f0f0');
-                  sliderContainer.style.display = 'none';
-                  break;
-               case 'dark':
-                  applyTheme('black', 'white', '#333');
-                  sliderContainer.style.display = 'none';
-                  break;
-               case 'nature':
-                  applyTheme('#d8f3dc', '#1b4332', '#95d5b2');
-                  sliderContainer.style.display = 'none';
-                  break;
-               case 'retro':
-                  applyTheme('#ffefd5', '#d2691e', '#f4a460');
-                  sliderContainer.style.display = 'none';
-                  break;
-               case 'custom':
-                  sliderContainer.style.display = 'block';
-                  break;
-               default:
-                  break;
-            }
-         }
-
-         function applyTheme(background, text, button) {
-            document.body.style.background = background;
-            document.body.style.color = text;
-            document.querySelectorAll('button, select').forEach(el => {
-               el.style.background = button;
-               el.style.color = text;
-            });
-         }
-
-         function resetTheme() {
-            document.body.style.background = '';
-            document.body.style.color = '';
-            document.querySelectorAll('button, select').forEach(el => {
-               el.style.background = '';
-               el.style.color = '';
-            });
-         }
-
-         function updateCustomTheme() {
-            const bgColor = document.getElementById('bg-color-slider').value;
-            const textColor = document.getElementById('text-color-slider').value;
-            const buttonColor = document.getElementById('button-color-slider').value;
-
-            document.body.style.background = bgColor;
-            document.body.style.color = textColor;
-            document.querySelectorAll('button, select').forEach(el => {
-               el.style.background = buttonColor;
-               el.style.color = textColor;
-            });
+         function openTwitchInProxy() {
+            const twitchURL = '/static/tiw/hvtrs8%2F-wuw%2Ctuivcj.vv-'; // Twitch static link
+            window.location.href = twitchURL; // Open Twitch with the new static path
          }
       </script>
    </body>
