@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -7,138 +7,60 @@
       <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
       <link rel="shortcut icon" type="image/jpg" href="~/favicon.ico"/>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7YtcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
       <style>
-         /* Base Styles */
-         body {
-            background: linear-gradient(to bottom, #f8e0b9, #f3c98b, #e8a75d);
-            color: #5a2d0c;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-         }
-
-         /* Container */
-         #content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            width: 100%;
-            max-width: 600px;
-         }
-
-         /* Title */
-         #content h1 {
-            font-size: 36px;
-            font-weight: 700;
-            text-transform: uppercase;
-            background: linear-gradient(to right, #f5c97b, #e8a75d);
-            color: #5a2d0c;
-            border: none;
-            padding: 16px 24px;
-            border-radius: 12px;
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            margin-bottom: 20px;
-         }
-
-         /* Search Input */
-         .form__input {
-            padding: 12px;
-            border: 2px solid #a46b3e;
-            border-radius: 8px;
-            font-size: 18px;
-            width: 100%;
-            max-width: 400px;
-            background: linear-gradient(to bottom, #f7c779, #f0b864);
-            color: #5a2d0c;
-            outline: none;
-            transition: all 0.3s ease-in-out;
-            text-align: center;
-            margin-bottom: 20px;
-         }
-
-         .form__input:focus {
-            border-color: #e38b29;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-         }
-
-         /* Button Container */
          .button-container {
+            margin-top: 20px;
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
+            gap: 20px;
          }
-
          .button-group {
             display: flex;
             flex-direction: column;
             align-items: center;
          }
-
-         /* Proxy Buttons */
          .proxy-button {
             background: none;
             border: none;
             cursor: pointer;
             padding: 0;
-            transition: transform 0.2s ease-in-out;
          }
-
          .proxy-button img {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             border: none;
          }
-
-         .proxy-button:hover {
-            transform: scale(1.1);
-         }
-
-         /* Button Labels */
          .button-label {
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 12px;
             margin-top: 5px;
             text-align: center;
-            font-weight: 600;
          }
-
-         /* Footer */
          #footer {
-            background: linear-gradient(to bottom, #e8a75d, #d89050, #c7753a);
+            background: linear-gradient(to right, #e8a75d, #d89050);
             color: #5a2d0c;
             padding: 20px;
             text-align: center;
-            border-top: 4px solid #b26020;
+            border-top: 4px solid #c7753a;
             width: 100%;
             font-size: 16px;
             font-weight: 600;
-            box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
-            margin-top: 40px;
+            cursor: pointer;
          }
       </style>
    </head>
    <body>
       <div id="header"></div>
       <div id="content">
-         <h1>Waffle Proxy!🧇</h1>
+         <h1>Waffle Proxy</h1>
 
          <form id="uv-form">
             <input id="uv-search-engine" value="google.com/search" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
          </form>
 
-         <!-- Buttons Section -->
          <div class="button-container">
             <div class="button-group">
                <button class="proxy-button" onclick="openDuckDuckGoInProxy()">
@@ -160,35 +82,36 @@
             </div>
          </div>
 
-         <div class="desc">
+         <div class="desc left-margin">
             <p id="uv-error"></p>
             <pre id="uv-error-code"></pre>
          </div>
+
+         <a></a>
       </div>
 
-      <div id="footer">Made with ❤️ for waffle lovers!</div>
+      <div id="footer" onclick="changeFooterMessage()"></div>
 
-      <script src="uv/uv.bundle.js" defer></script>
-      <script src="uv/uv.config.js" defer></script>
-      <script src="register-sw.js" defer></script>
-      <script src="search.js" defer></script>
-      <script src="index.js" defer></script>
-      <script src="error.js" defer></script>
       <script>
-         function openDuckDuckGoInProxy() {
-            const duckDuckGoURL = '/static/tiw/hvtrs8%2F-dwcidwcigm.aoo%2F';
-            window.location.href = duckDuckGoURL;
+         const phrases = [
+            "Made with ❤️ for waffle lovers!",
+            "School Chromebooks are so bad.",
+            "This proxy runs smoother than my grades.",
+            "Waffles > Pancakes. Don't @ me.",
+            "The WiFi is so slow, I can hear dial-up sounds.",
+            "Why do school blocks make no sense?",
+            "404: Homework Not Found.",
+            "Teacher: 'No phones in class.' Also Teacher: *On their laptop*",
+            "Using this proxy? Stay sneaky. 🕵️",
+            "If this stops working, blame the IT guy."
+         ];
+
+         function changeFooterMessage() {
+            const randomIndex = Math.floor(Math.random() * phrases.length);
+            document.getElementById("footer").textContent = phrases[randomIndex];
          }
 
-         function openTikTokInProxy() {
-            const tiktokURL = '/static/tiw/hvtrs8%2F-wuw%2Ctkkvoi.aoo%2Fgxrlmrg';
-            window.location.href = tiktokURL;
-         }
-
-         function openTwitchInProxy() {
-            const twitchURL = '/static/tiw/hvtrs8%2F-wuw%2Ctuivcj.vv-';
-            window.location.href = twitchURL;
-         }
+         window.onload = changeFooterMessage;
       </script>
    </body>
 </html>
