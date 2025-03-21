@@ -9,27 +9,43 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+      <style>
+         .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+         }
+         .proxy-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+         }
+         .proxy-button img {
+            width: 50px;
+            height: 50px;
+         }
+      </style>
    </head>
    <body>
       <div id="header"></div>
       <div id="content">
          <h1>Waffle Proxy!🧇</h1>
 
-         <form id="uv-form">
-            <input id="uv-search-engine" value="google.com/search" type="hidden"/> 
-            <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
+         <form id="uv-form" onsubmit="return handleSearch(event);">
+            <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input" />
+            <button type="submit" style="display: none;"></button>
          </form>
 
-         <!-- Buttons -->
-         <div style="margin-top: 20px;">
-            <button onclick="autoFillAndSubmit('https://www.tiktok.com')">
-               <img src="https://www.tiktok.com/favicon.ico" alt="TikTok" style="width:20px; height:20px; margin-right: 5px;"> TikTok
+         <!-- Logo Buttons -->
+         <div class="button-container">
+            <button class="proxy-button" onclick="autoFillAndSubmit('https://www.tiktok.com')">
+               <img src="https://www.tiktok.com/favicon.ico" alt="TikTok">
             </button>
-            <button onclick="autoFillAndSubmit('https://now.gg')">
-               <img src="https://now.gg/favicon.ico" alt="Now.gg" style="width:20px; height:20px; margin-right: 5px;"> Now.gg
+            <button class="proxy-button" onclick="autoFillAndSubmit('https://now.gg')">
+               <img src="https://now.gg/favicon.ico" alt="Now.gg">
             </button>
-            <button onclick="autoFillAndSubmit('https://discord.com')">
-               <img src="https://discord.com/favicon.ico" alt="Discord" style="width:20px; height:20px; margin-right: 5px;"> Discord
+            <button class="proxy-button" onclick="autoFillAndSubmit('https://discord.com')">
+               <img src="https://discord.com/favicon.ico" alt="Discord">
             </button>
          </div>
 
@@ -50,8 +66,22 @@
 
       <script>
          function autoFillAndSubmit(url) {
-            document.getElementById('uv-address').value = url; // Autofill the URL into the input field
-            document.getElementById('uv-form').submit(); // Automatically submit the form
+            const searchInput = document.getElementById('uv-address');
+            searchInput.value = url; // Autofill the proxy input field with the link
+            const form = document.getElementById('uv-form');
+            form.submit(); // Automatically submit the form
+         }
+
+         function handleSearch(event) {
+            event.preventDefault(); // Prevent default form submission behavior
+            const query = document.getElementById('uv-address').value.trim();
+            if (query !== '') {
+               const searchURL = query;
+               const proxyURL = '/proxy/' + encodeURIComponent(searchURL);
+               window.location.href = proxyURL; // Use proxy to navigate
+            } else {
+               document.getElementById('uv-error').textContent = 'Please enter a search term!';
+            }
          }
       </script>
    </body>
