@@ -11,13 +11,13 @@
       <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
    </head>
    <body>
+      <div id="header"></div>
       <div id="content">
          <h1>Waffle Proxy! 🧇</h1>
 
          <form id="uv-form">
             <input id="uv-search-engine" value="https://www.duckduckgo.com/" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
-            <button type="submit">Search</button>
          </form>
 
          <div class="desc left-margin">
@@ -28,38 +28,11 @@
          <a></a> <!-- Fixed invalid <a> elements -->
       </div>
 
-      <script>
-         document.getElementById('uv-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission behavior
-
-            const searchInput = document.getElementById('uv-address').value.trim();
-
-            if (isValidURL(searchInput)) {
-               // If the input is a valid URL, navigate to it
-               window.location.href = searchInput;
-            } else {
-               // If the input isn't a URL, perform a search on the site
-               performLocalSearch(searchInput);
-            }
-         });
-
-         // Helper function to check if a string is a valid URL
-         function isValidURL(string) {
-            try {
-               new URL(string);
-               return true;
-            } catch (_) {
-               return false;
-            }
-         }
-
-         // Example function to perform a local search
-         function performLocalSearch(query) {
-            const searchResults = `You searched for: ${query}`; // Example result
-            const resultsDiv = document.createElement('div');
-            resultsDiv.innerHTML = `<p>${searchResults}</p>`;
-            document.getElementById('content').appendChild(resultsDiv);
-         }
-      </script>
+      <script src="uv/uv.bundle.js" defer></script>
+      <script src="uv/uv.config.js" defer></script>
+      <script src="register-sw.js" defer></script>
+      <script src="search.js" defer></script>
+      <script src="index.js" defer></script>
+      <script src="error.js" defer></script>
    </body>
 </html>
