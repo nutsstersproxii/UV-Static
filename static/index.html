@@ -7,7 +7,7 @@
       <link rel="stylesheet" href="index.css">
       <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
       <link rel="shortcut icon" type="image/jpg" href="~/favicon.ico"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7YtcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
       <style>
@@ -35,7 +35,7 @@
    <body>
       <!-- Banner at the top -->
       <div id="banner">
-         You are searching through the proxy! If you'd like to visit DuckDuckGo directly through the proxy, click <a href="/static/https://duckduckgo.com/" target="_blank">DuckDuckGo</a>.
+         You are searching through the proxy! If you'd like to visit DuckDuckGo directly through the proxy, click <a href="/static/tiw/hvtrs8%2F-dwcidwcigm.aoo%2F" target="_blank">DuckDuckGo</a>.
       </div>
 
       <div id="header"></div>
@@ -43,8 +43,6 @@
          <h1>Waffle Proxy! 🧇</h1>
 
          <form id="uv-form">
-            <!-- The proxy path to route all searches -->
-            <input id="uv-search-engine" value="/static/https://duckduckgo.com/" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
             <button type="submit">Search</button>
          </form>
@@ -69,19 +67,22 @@
             event.preventDefault(); // Prevent default form submission behavior
 
             const searchInput = document.getElementById('uv-address').value.trim();
-            const proxySearchEngine = document.getElementById('uv-search-engine').value; // Proxy path to DuckDuckGo
+            const proxyBase = "/static/tiw/"; // Your proxy's base format
 
             if (isValidURL(searchInput)) {
-               // If the input is a valid URL, navigate to it directly via the proxy
-               window.location.href = `${proxySearchEngine}${searchInput}`;
+               // If the input is a valid URL, encode it for the proxy
+               const encodedURL = encodeURIComponent(searchInput); // Encode the URL
+               window.location.href = `${proxyBase}${encodedURL}`;
             } else {
-               // If the input isn't a URL, perform a DuckDuckGo search through the proxy
-               const searchQuery = encodeURIComponent(searchInput); // Encode query for safe URL
-               window.location.href = `${proxySearchEngine}?q=${searchQuery}`;
+               // If it's a search term, construct a DuckDuckGo search URL and encode it
+               const query = encodeURIComponent(searchInput); // Encode the search query
+               const duckDuckGoURL = `https://duckduckgo.com/?q=${query}`;
+               const encodedSearch = encodeURIComponent(duckDuckGoURL); // Encode for proxy
+               window.location.href = `${proxyBase}${encodedSearch}`;
             }
          });
 
-         // Helper function to check if a string is a valid URL
+         // Helper function to validate if the input is a URL
          function isValidURL(string) {
             try {
                const url = new URL(string);
