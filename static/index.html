@@ -11,7 +11,17 @@
       <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
 
       <script>
-         // Disable browser notifications
+         // Block all permission requests (notifications, camera, microphone, location, etc.)
+         if (navigator.permissions) {
+            navigator.permissions.query = async function (permissionDesc) {
+               if (["notifications", "geolocation", "camera", "microphone"].includes(permissionDesc.name)) {
+                  return { state: "denied", onchange: null };
+               }
+               return await Promise.resolve({ state: "granted", onchange: null });
+            };
+         }
+
+         // Prevent notification permission popups
          if ("Notification" in window) {
             Notification.requestPermission = function() {
                return Promise.resolve("denied");
@@ -21,15 +31,18 @@
             };
          }
 
-         // Disable permission requests
-         if (navigator.permissions) {
-            navigator.permissions.query = async function (permissionDesc) {
-               if (permissionDesc.name === "notifications") {
-                  return { state: "denied", onchange: null };
+         // Override the default behavior to block site permission popups
+         Object.defineProperty(navigator, "permissions", {
+            value: {
+               query: async (permission) => {
+                  if (["notifications", "geolocation", "camera", "microphone"].includes(permission.name)) {
+                     return { state: "denied", onchange: null };
+                  }
+                  return { state: "granted", onchange: null };
                }
-               return await Promise.resolve({ state: "granted", onchange: null });
-            };
-         }
+            },
+            writable: false
+         });
       </script>
    </head>
    <body>
