@@ -9,6 +9,31 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+      <style>
+         .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+         }
+         .proxy-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #000;
+            font-family: 'Open Sans', sans-serif;
+         }
+         .proxy-button img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+         }
+      </style>
    </head>
    <body>
       <div id="header"></div>
@@ -19,6 +44,18 @@
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input" />
             <button type="submit">Search</button>
          </form>
+
+         <div class="button-container">
+            <a href="/proxy/https://www.tiktok.com" class="proxy-button">
+               <img src="https://www.tiktok.com/favicon.ico" alt="TikTok Logo" /> TikTok
+            </a>
+            <a href="/proxy/https://now.gg" class="proxy-button">
+               <img src="https://now.gg/favicon.ico" alt="Now.gg Logo" /> Now.gg
+            </a>
+            <a href="/proxy/https://discord.com" class="proxy-button">
+               <img src="https://discord.com/favicon.ico" alt="Discord Logo" /> Discord
+            </a>
+         </div>
 
          <div class="desc left-margin">
             <p id="uv-error"></p>
@@ -36,10 +73,9 @@
             event.preventDefault();
             const query = document.getElementById('uv-address').value.trim();
             if (query !== '') {
-               const proxyURL = '/proxy/'; // Replace with your proxy endpoint
-               const duckDuckGoSearchURL = `https://www.duckduckgo.com/?q=${encodeURIComponent(query)}`;
-               const finalURL = `${proxyURL}${encodeURIComponent(duckDuckGoSearchURL)}`;
-               window.location.href = finalURL; // Load the search query through the proxy
+               const searchURL = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+               const proxyURL = '/proxy/' + encodeURIComponent(searchURL);
+               window.location.href = proxyURL;
             } else {
                document.getElementById('uv-error').textContent = 'Please enter a search term!';
             }
