@@ -2,7 +2,7 @@
 <html>
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Waffle Proxy - DuckDuckGo via Proxy</title>
+      <title>Waffle Proxy - Search through Proxy</title>
       <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
       <link rel="stylesheet" href="index.css">
       <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
@@ -17,7 +17,7 @@
          <h1>Waffle Proxy! 🧇</h1>
 
          <form id="uv-form">
-            <!-- The proxy path to route all searches -->
+            <!-- Updated to use proxy for all queries -->
             <input id="uv-search-engine" value="/static/https://duckduckgo.com/" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
             <button type="submit">Search</button>
@@ -43,15 +43,15 @@
             event.preventDefault(); // Prevent default form submission behavior
 
             const searchInput = document.getElementById('uv-address').value.trim();
-            const proxySearchEngine = document.getElementById('uv-search-engine').value; // Proxy path to DuckDuckGo
+            const proxyPath = document.getElementById('uv-search-engine').value; // Proxy path to DuckDuckGo
 
             if (isValidURL(searchInput)) {
                // If the input is a valid URL, navigate to it directly via the proxy
-               window.location.href = `${proxySearchEngine}${searchInput}`;
+               window.location.href = `${proxyPath}${searchInput}`;
             } else {
-               // If the input isn't a URL, perform a DuckDuckGo search through the proxy
+               // If the input isn't a URL, construct a proxied DuckDuckGo search URL
                const searchQuery = encodeURIComponent(searchInput); // Encode query for safe URL
-               window.location.href = `${proxySearchEngine}?q=${searchQuery}`;
+               window.location.href = `${proxyPath}?q=${searchQuery}`;
             }
          });
 
