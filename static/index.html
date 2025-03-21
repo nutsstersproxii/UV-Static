@@ -2,7 +2,7 @@
 <html>
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Waffle Proxy - Search</title>
+      <title>Waffle Proxy - DuckDuckGo</title>
       <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
       <link rel="stylesheet" href="index.css">
       <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
@@ -12,11 +12,13 @@
       <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
    </head>
    <body>
+      <div id="header"></div>
       <div id="content">
          <h1>Waffle Proxy! 🧇</h1>
 
          <form id="uv-form">
-            <input id="uv-search-engine" value="/static/" type="hidden"/> <!-- Updated to use proxy path -->
+            <!-- Changed search engine to DuckDuckGo -->
+            <input id="uv-search-engine" value="https://duckduckgo.com/" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
             <button type="submit">Search</button>
          </form>
@@ -25,22 +27,31 @@
             <p id="uv-error"></p>
             <pre id="uv-error-code"></pre>
          </div>
+
+         <a></a> <!-- Fixed invalid <a> elements -->
       </div>
+
+      <script src="uv/uv.bundle.js" defer></script>
+      <script src="uv/uv.config.js" defer></script>
+      <script src="register-sw.js" defer></script>
+      <script src="search.js" defer></script>
+      <script src="index.js" defer></script>
+      <script src="error.js" defer></script>
 
       <script>
          document.getElementById('uv-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission behavior
 
             const searchInput = document.getElementById('uv-address').value.trim();
-            const proxyPath = document.getElementById('uv-search-engine').value; // Proxy path
+            const searchEngine = document.getElementById('uv-search-engine').value;
 
             if (isValidURL(searchInput)) {
-               // If the input is a valid URL, navigate to it through the proxy
-               window.location.href = `${proxyPath}${searchInput}`;
+               // If the input is a valid URL, navigate to it directly
+               window.location.href = searchInput;
             } else {
-               // If the input isn't a URL, perform a DuckDuckGo search through the proxy
+               // If the input isn't a URL, perform a DuckDuckGo search
                const searchQuery = encodeURIComponent(searchInput); // Encode query to ensure it works in a URL
-               window.location.href = `${proxyPath}https://duckduckgo.com/?q=${searchQuery}`;
+               window.location.href = `${searchEngine}?q=${searchQuery}`;
             }
          });
 
