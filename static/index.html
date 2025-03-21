@@ -2,7 +2,7 @@
 <html>
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Waffle Proxy - Fully Functional</title>
+      <title>Waffle Proxy - DuckDuckGo via Proxy</title>
       <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
       <link rel="stylesheet" href="index.css">
       <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
@@ -10,14 +10,41 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+      <style>
+         /* Styling for the banner */
+         #banner {
+            background-color: #fffae6;
+            color: #333;
+            padding: 10px;
+            text-align: center;
+            border-bottom: 2px solid #f3c798;
+            font-size: 16px;
+         }
+
+         #banner a {
+            color: #0078d7;
+            text-decoration: none;
+            font-weight: bold;
+         }
+
+         #banner a:hover {
+            text-decoration: underline;
+         }
+      </style>
    </head>
    <body>
+      <!-- Banner at the top -->
+      <div id="banner">
+         If you'd prefer to search without using a link, you can visit <a href="https://duckduckgo.com" target="_blank">DuckDuckGo</a> directly.
+      </div>
+
       <div id="header"></div>
       <div id="content">
          <h1>Waffle Proxy! 🧇</h1>
 
          <form id="uv-form">
-            <input id="uv-search-engine" value="/static/https://duckduckgo.com/" type="hidden"/> <!-- Proxy to DuckDuckGo -->
+            <!-- The proxy path to route all searches -->
+            <input id="uv-search-engine" value="/static/https://duckduckgo.com/" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
             <button type="submit">Search</button>
          </form>
@@ -30,25 +57,31 @@
          <a></a> <!-- Fixed invalid <a> elements -->
       </div>
 
+      <script src="uv/uv.bundle.js" defer></script>
+      <script src="uv/uv.config.js" defer></script>
+      <script src="register-sw.js" defer></script>
+      <script src="search.js" defer></script>
+      <script src="index.js" defer></script>
+      <script src="error.js" defer></script>
+
       <script>
-         // Handle the form submission
          document.getElementById('uv-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission behavior
+            event.preventDefault(); // Prevent default form submission behavior
 
             const searchInput = document.getElementById('uv-address').value.trim();
-            const proxyBase = document.getElementById('uv-search-engine').value; // Base proxy path for DuckDuckGo
+            const proxySearchEngine = document.getElementById('uv-search-engine').value; // Proxy path to DuckDuckGo
 
             if (isValidURL(searchInput)) {
-               // If the input is a valid URL, proxy the URL directly
-               window.location.href = `${proxyBase}${searchInput}`;
+               // If the input is a valid URL, navigate to it directly via the proxy
+               window.location.href = `${proxySearchEngine}${searchInput}`;
             } else {
-               // If it's a search term, construct a DuckDuckGo search query via the proxy
-               const query = encodeURIComponent(searchInput); // Encode the query
-               window.location.href = `${proxyBase}?q=${query}`;
+               // If the input isn't a URL, perform a DuckDuckGo search through the proxy
+               const searchQuery = encodeURIComponent(searchInput); // Encode query for safe URL
+               window.location.href = `${proxySearchEngine}?q=${searchQuery}`;
             }
          });
 
-         // Helper function to validate if the input is a URL
+         // Helper function to check if a string is a valid URL
          function isValidURL(string) {
             try {
                const url = new URL(string);
