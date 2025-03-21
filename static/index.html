@@ -16,7 +16,7 @@
          <h1>Waffle Proxy! 🧇</h1>
 
          <form id="uv-form">
-            <input id="uv-search-engine" value="/proxy/" type="hidden"/> 
+            <input id="uv-search-engine" value="/static/" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
             <button type="submit">Search</button>
          </form>
@@ -34,7 +34,7 @@
             event.preventDefault(); // Prevent default form submission behavior
 
             const searchInput = document.getElementById('uv-address').value.trim();
-            const proxyPath = document.getElementById('uv-search-engine').value; // Use proxy path
+            const proxyPath = document.getElementById('uv-search-engine').value; // Use the /static/ path
 
             if (isValidURL(searchInput)) {
                // If the input is a valid URL, navigate to it through the proxy
