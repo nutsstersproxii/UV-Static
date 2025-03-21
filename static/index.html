@@ -4,12 +4,24 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
       <link rel="stylesheet" href="index.css">
-      <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
       <link rel="shortcut icon" type="image/jpg" href="~/favicon.ico"/>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7YtcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
       <style>
+         /* Particle background styles */
+         #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #282c34;
+            z-index: -1; /* Ensures particles are behind the main content */
+         }
+         body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            overflow-x: hidden;
+         }
          .button-container {
             margin-top: 20px;
             display: flex;
@@ -25,12 +37,11 @@
             background: none;
             border: none;
             cursor: pointer;
-            padding: 0; /* Remove any padding for a clean look */
+            padding: 0;
          }
          .proxy-button img {
             width: 30px;
             height: 30px;
-            border: none; /* Remove any border */
          }
          .button-label {
             font-family: 'Open Sans', sans-serif;
@@ -41,16 +52,16 @@
       </style>
    </head>
    <body>
+      <!-- Particle background -->
+      <div id="particles-js"></div>
+
       <div id="header"></div>
       <div id="content">
          <h1>Waffle Proxy!🧇</h1>
-
          <form id="uv-form">
             <input id="uv-search-engine" value="google.com/search" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
          </form>
-
-         <!-- Buttons Side by Side -->
          <div class="button-container">
             <div class="button-group">
                <button class="proxy-button" onclick="openDuckDuckGoInProxy()">
@@ -71,35 +82,69 @@
                <div class="button-label">Twitch</div>
             </div>
          </div>
-
          <div class="desc left-margin">
             <p id="uv-error"></p>
             <pre id="uv-error-code"></pre>
          </div>
-
-         <a></a> <!-- Fixed invalid <a> elements -->
       </div>
 
-      <script src="uv/uv.bundle.js" defer></script>
-      <script src="uv/uv.config.js" defer></script>
-      <script src="register-sw.js" defer></script>
-      <script src="search.js" defer></script>
-      <script src="index.js" defer></script>
-      <script src="error.js" defer></script>
+      <!-- Import particles.js -->
+      <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
       <script>
+         // Initialize particles.js with inline configuration
+         particlesJS('particles-js', {
+            "particles": {
+               "number": {
+                  "value": 100,
+                  "density": {
+                     "enable": true,
+                     "value_area": 800
+                  }
+               },
+               "color": { "value": "#ffffff" },
+               "shape": {
+                  "type": "circle",
+                  "stroke": {
+                     "width": 0,
+                     "color": "#000000"
+                  }
+               },
+               "opacity": {
+                  "value": 0.5,
+                  "random": false,
+                  "anim": {
+                     "enable": false,
+                     "speed": 1,
+                     "opacity_min": 0.1,
+                     "sync": false
+                  }
+               },
+               "size": {
+                  "value": 3,
+                  "random": true
+               },
+               "move": {
+                  "enable": true,
+                  "speed": 2,
+                  "direction": "none",
+                  "out_mode": "out"
+               }
+            }
+         });
+
          function openDuckDuckGoInProxy() {
-            const duckDuckGoURL = '/static/tiw/hvtrs8%2F-dwcidwcigm.aoo%2F'; // DuckDuckGo static link
-            window.location.href = duckDuckGoURL; // Open DuckDuckGo with the new static path
+            const duckDuckGoURL = '/static/tiw/hvtrs8%2F-dwcidwcigm.aoo%2F';
+            window.location.href = duckDuckGoURL;
          }
 
          function openTikTokInProxy() {
-            const tiktokURL = '/static/tiw/hvtrs8%2F-wuw%2Ctkkvoi.aoo%2Fgxrlmrg'; // TikTok static link
-            window.location.href = tiktokURL; // Open TikTok with the new static path
+            const tiktokURL = '/static/tiw/hvtrs8%2F-wuw%2Ctkkvoi.aoo%2Fgxrlmrg';
+            window.location.href = tiktokURL;
          }
 
          function openTwitchInProxy() {
-            const twitchURL = '/static/tiw/hvtrs8%2F-wuw%2Ctuivcj.vv-'; // Twitch static link
-            window.location.href = twitchURL; // Open Twitch with the new static path
+            const twitchURL = '/static/tiw/hvtrs8%2F-wuw%2Ctuivcj.vv-';
+            window.location.href = twitchURL;
          }
       </script>
    </body>
