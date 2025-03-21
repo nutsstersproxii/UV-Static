@@ -51,6 +51,14 @@
             font-family: 'Open Sans', sans-serif;
             margin-bottom: 10px;
          }
+         .slider-container {
+            display: none;
+            margin-top: 10px;
+         }
+         .slider-container label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 12px;
+         }
       </style>
    </head>
    <body>
@@ -91,7 +99,18 @@
                <option value="dark">Dark</option>
                <option value="nature">Nature</option>
                <option value="retro">Retro</option>
+               <option value="custom">Custom</option>
             </select>
+
+            <!-- Custom Theme Sliders -->
+            <div id="slider-container" class="slider-container">
+               <label>Background Color:</label>
+               <input type="color" id="bg-color-slider" onchange="updateCustomTheme()"><br>
+               <label>Text Color:</label>
+               <input type="color" id="text-color-slider" onchange="updateCustomTheme()"><br>
+               <label>Button Color:</label>
+               <input type="color" id="button-color-slider" onchange="updateCustomTheme()">
+            </div>
          </div>
 
          <div class="desc left-margin">
@@ -125,50 +144,65 @@
          }
 
          function changeTheme(theme) {
+            const sliderContainer = document.getElementById('slider-container');
             switch (theme) {
                case 'default':
-                  document.body.style.background = '';
-                  document.body.style.color = '';
-                  document.querySelectorAll('button, select').forEach(el => {
-                     el.style.background = '';
-                     el.style.color = '';
-                  });
+                  resetTheme();
+                  sliderContainer.style.display = 'none';
                   break;
                case 'light':
-                  document.body.style.background = 'white';
-                  document.body.style.color = 'black';
-                  document.querySelectorAll('button, select').forEach(el => {
-                     el.style.background = '#f0f0f0';
-                     el.style.color = 'black';
-                  });
+                  applyTheme('white', 'black', '#f0f0f0');
+                  sliderContainer.style.display = 'none';
                   break;
                case 'dark':
-                  document.body.style.background = 'black';
-                  document.body.style.color = 'white';
-                  document.querySelectorAll('button, select').forEach(el => {
-                     el.style.background = '#333';
-                     el.style.color = 'white';
-                  });
+                  applyTheme('black', 'white', '#333');
+                  sliderContainer.style.display = 'none';
                   break;
                case 'nature':
-                  document.body.style.background = '#d8f3dc';
-                  document.body.style.color = '#1b4332';
-                  document.querySelectorAll('button, select').forEach(el => {
-                     el.style.background = '#95d5b2';
-                     el.style.color = '#081c15';
-                  });
+                  applyTheme('#d8f3dc', '#1b4332', '#95d5b2');
+                  sliderContainer.style.display = 'none';
                   break;
                case 'retro':
-                  document.body.style.background = '#ffefd5';
-                  document.body.style.color = '#d2691e';
-                  document.querySelectorAll('button, select').forEach(el => {
-                     el.style.background = '#f4a460';
-                     el.style.color = '#8b4513';
-                  });
+                  applyTheme('#ffefd5', '#d2691e', '#f4a460');
+                  sliderContainer.style.display = 'none';
+                  break;
+               case 'custom':
+                  sliderContainer.style.display = 'block';
                   break;
                default:
                   break;
             }
+         }
+
+         function applyTheme(background, text, button) {
+            document.body.style.background = background;
+            document.body.style.color = text;
+            document.querySelectorAll('button, select').forEach(el => {
+               el.style.background = button;
+               el.style.color = text;
+            });
+         }
+
+         function resetTheme() {
+            document.body.style.background = '';
+            document.body.style.color = '';
+            document.querySelectorAll('button, select').forEach(el => {
+               el.style.background = '';
+               el.style.color = '';
+            });
+         }
+
+         function updateCustomTheme() {
+            const bgColor = document.getElementById('bg-color-slider').value;
+            const textColor = document.getElementById('text-color-slider').value;
+            const buttonColor = document.getElementById('button-color-slider').value;
+
+            document.body.style.background = bgColor;
+            document.body.style.color = textColor;
+            document.querySelectorAll('button, select').forEach(el => {
+               el.style.background = buttonColor;
+               el.style.color = textColor;
+            });
          }
       </script>
    </body>
