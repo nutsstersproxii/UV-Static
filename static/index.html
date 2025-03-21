@@ -1,95 +1,182 @@
 <!DOCTYPE html>
-<html><head><meta name="viewport" content="width=device-width, initial-scale=1"><script src="https://code.jquery.com/jquery-1.10.2.js"></script><link rel="stylesheet" href="index.css"><script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script><link rel="shortcut icon" type="image/jpg" href="~/favicon.ico"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7YtcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" /><link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet"><style>.button-container {margin-top: 20px;display: flex;justify-content: center;gap: 20px;}.button-group {display: flex;flex-direction: column;align-items: center;}.proxy-button {background: none;border: none;cursor: pointer;padding: 0;}.proxy-button img {width: 30px;height: 30px;border: none;}.button-label {font-family: 'Open Sans', sans-serif;font-size: 12px;margin-top: 5px;text-align: center;}#footer {background: linear-gradient(to right, #e8a75d, #d89050);color: #5a2d0c;padding: 20px;text-align: center;border-top: 4px solid #c7753a;width: 100%;font-size: 16px;font-weight: 600;cursor: pointer;}</style></head><body><div id="header"></div><div id="content"><h1>Waffle Proxy</h1>
-     <form id="uv-form" onsubmit="event.preventDefault(); handleSearch();">
-        <input id="uv-search-engine" value="google.com/search" type="hidden"/> 
-        <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
-     </form>
-
-     <div class="button-container">
-        <div class="button-group">
-           <button class="proxy-button" onclick="openDuckDuckGoInProxy()">
-              <img src="https://www.duckduckgo.com/favicon.ico" alt="DuckDuckGo">
-           </button>
-           <div class="button-label">DuckDuckGo</div>
-        </div>
-        <div class="button-group">
-           <button class="proxy-button" onclick="openTikTokInProxy()">
-              <img src="https://www.tiktok.com/favicon.ico" alt="TikTok">
-           </button>
-           <div class="button-label">TikTok</div>
-        </div>
-        <div class="button-group">
-           <button class="proxy-button" onclick="openTwitchInProxy()">
-              <img src="https://www.twitch.tv/favicon.ico" alt="Twitch">
-           </button>
-           <div class="button-label">Twitch</div>
-        </div>
-     </div>
-     <div class="desc left-margin">
-        <p id="uv-error"></p>
-        <pre id="uv-error-code"></pre>
-     </div>
-  </div>
-  <div id="footer" onclick="changeFooterMessage()">Click For a New Message</div>
-  <script>
-     const messages = [
-        "❤️ Made with love by Waffle Lovers! ❤️",
-        "School Chromebooks are so bad.",
-        "Waffles > Pancakes. Change my mind.",
-        "The syrup is the best part!",
-        "Waffle Proxy - Stay crispy!",
-        "Why do waffles have pockets? For extra syrup storage!",
-        "Unblocking the web, one waffle at a time.",
-        "Chromebooks: the device that makes you question life choices.",
-        "I swear my Chromebook has a mind of its own... and it’s evil.",
-        "School Chromebook: 4GB RAM? More like 4GB of frustration.",
-        "Why do Chromebooks have so much lag? It’s like running on a potato!",
-        "I thought Chromebooks were supposed to be faster... turns out it was a lie.",
-        "Trying to open Google Docs on a Chromebook? Good luck with that!",
-        "Chromebooks in class: The silent killer of productivity.",
-        "That feeling when you try to use a Chromebook and the WiFi just gives up.",
-        "Is there a Chromebook emulator for my actual laptop? Asking for a friend...",
-        "When the Chromebook freezes, it’s not your fault, it’s the Chromebook’s fault.",
-        "How do Chromebooks always manage to crash at the worst possible moment?",
-        "Chromebooks are just school’s version of a broken pencil.",
-        "I think my Chromebook is secretly plotting against me.",
-        "Trying to finish homework on a Chromebook is a lesson in patience."
-     ];
-
-     function changeFooterMessage() {
-        const footer = document.getElementById("footer");
-        footer.textContent = messages[Math.floor(Math.random() * messages.length)];
-     }
-
-     window.onload = changeFooterMessage;
-
-     // Functions for proxy paths
-     function openDuckDuckGoInProxy() {
-        const proxyPath = "/static/tiw/hvtrs8%2F-dwcidwcigm.aoo%2F";
-        window.location.href = window.location.origin + proxyPath;
-     }
-
-     function openTikTokInProxy() {
-        const proxyPath = "/static/tiw/hvtrs8%2F-wuw%2Ctkkvoi.aoo%2Fgn-";
-        window.location.href = window.location.origin + proxyPath;
-     }
-
-     function openTwitchInProxy() {
-        const proxyPath = "/static/tiw/hvtrs8%2F-wuw%2Ctuivcj.vv-";
-        window.location.href = window.location.origin + proxyPath;
-     }
-
-     function handleSearch() {
-        const searchQuery = document.getElementById("uv-address").value;
-        if (searchQuery) {
-           window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
-        }
-     }
-  </script>
-  <script src="uv/uv.bundle.js" defer></script>
-  <script src="uv/uv.config.js" defer></script>
-  <script src="register-sw.js" defer></script>
-  <script src="search.js" defer></script>
-  <script src="index.js" defer></script>
-  <script src="error.js" defer></script>
-</body></html>
+<html>
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+   <link rel="stylesheet" href="index.css">
+   <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
+   <link rel="shortcut icon" type="image/jpg" href="~/favicon.ico"/>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7YtcenmpD1ypASozpmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+   <style>
+      .button-container {
+         margin-top: 20px;
+         display: flex;
+         justify-content: center;
+         gap: 20px;
+      }
+      .button-group {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+      }
+      .proxy-button {
+         background: none;
+         border: none;
+         cursor: pointer;
+         padding: 0;
+      }
+      .proxy-button img {
+         width: 30px;
+         height: 30px;
+         border: none;
+      }
+      .button-label {
+         font-family: 'Open Sans', sans-serif;
+         font-size: 12px;
+         margin-top: 5px;
+         text-align: center;
+      }
+      #footer {
+         background: linear-gradient(to right, #e8a75d, #d89050);
+         color: #5a2d0c;
+         padding: 20px;
+         text-align: center;
+         border-top: 4px solid #c7753a;
+         width: 100%;
+         font-size: 16px;
+         font-weight: 600;
+         cursor: pointer;
+      }
+      #banner {
+         background-color: #7289da;
+         color: white;
+         padding: 10px 15px;
+         text-align: center;
+         font-family: 'Open Sans', sans-serif;
+         font-size: 16px;
+         font-weight: bold;
+         position: fixed;
+         top: 0;
+         left: 0;
+         right: 0;
+         z-index: 1000;
+      }
+      #banner a {
+         color: #ffeeba;
+         text-decoration: underline;
+      }
+      #banner .close-btn {
+         position: absolute;
+         top: 10px;
+         right: 15px;
+         background: none;
+         border: none;
+         color: white;
+         font-size: 18px;
+         cursor: pointer;
+      }
+      #content {
+         margin-top: 50px; /* Adjusted for the banner to prevent overlapping */
+      }
+   </style>
+</head>
+<body>
+   <div id="banner">
+      <span>Join our Discord! <a href="https://discord.gg/BwEnS96ewP" target="_blank">Click here</a> to connect!</span>
+      <button class="close-btn" onclick="closeBanner()">×</button>
+   </div>
+   <div id="header"></div>
+   <div id="content">
+      <h1>Waffle Proxy</h1>
+      <form id="uv-form" onsubmit="event.preventDefault(); handleSearch();">
+         <input id="uv-search-engine" value="google.com/search" type="hidden"/> 
+         <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
+      </form>
+      <div class="button-container">
+         <div class="button-group">
+            <button class="proxy-button" onclick="openDuckDuckGoInProxy()">
+               <img src="https://www.duckduckgo.com/favicon.ico" alt="DuckDuckGo">
+            </button>
+            <div class="button-label">DuckDuckGo</div>
+         </div>
+         <div class="button-group">
+            <button class="proxy-button" onclick="openTikTokInProxy()">
+               <img src="https://www.tiktok.com/favicon.ico" alt="TikTok">
+            </button>
+            <div class="button-label">TikTok</div>
+         </div>
+         <div class="button-group">
+            <button class="proxy-button" onclick="openTwitchInProxy()">
+               <img src="https://www.twitch.tv/favicon.ico" alt="Twitch">
+            </button>
+            <div class="button-label">Twitch</div>
+         </div>
+      </div>
+      <div class="desc left-margin">
+         <p id="uv-error"></p>
+         <pre id="uv-error-code"></pre>
+      </div>
+   </div>
+   <div id="footer" onclick="changeFooterMessage()">Click For a New Message</div>
+   <script>
+      const messages = [
+         "❤️ Made with love by Waffle Lovers! ❤️",
+         "School Chromebooks are so bad.",
+         "Waffles > Pancakes. Change my mind.",
+         "The syrup is the best part!",
+         "Waffle Proxy - Stay crispy!",
+         "Why do waffles have pockets? For extra syrup storage!",
+         "Unblocking the web, one waffle at a time.",
+         "Chromebooks: the device that makes you question life choices.",
+         "I swear my Chromebook has a mind of its own... and it’s evil.",
+         "School Chromebook: 4GB RAM? More like 4GB of frustration.",
+         "Why do Chromebooks have so much lag? It’s like running on a potato!",
+         "I thought Chromebooks were supposed to be faster... turns out it was a lie.",
+         "Trying to open Google Docs on a Chromebook? Good luck with that!",
+         "Chromebooks in class: The silent killer of productivity.",
+         "That feeling when you try to use a Chromebook and the WiFi just gives up.",
+         "Is there a Chromebook emulator for my actual laptop? Asking for a friend...",
+         "When the Chromebook freezes, it’s not your fault, it’s the Chromebook’s fault.",
+         "How do Chromebooks always manage to crash at the worst possible moment?",
+         "Chromebooks are just school’s version of a broken pencil.",
+         "I think my Chromebook is secretly plotting against me.",
+         "Trying to finish homework on a Chromebook is a lesson in patience."
+      ];
+      function changeFooterMessage() {
+         const footer = document.getElementById("footer");
+         footer.textContent = messages[Math.floor(Math.random() * messages.length)];
+      }
+      window.onload = changeFooterMessage;
+      function closeBanner() {
+         const banner = document.getElementById("banner");
+         banner.style.display = "none";
+      }
+      function openDuckDuckGoInProxy() {
+         const proxyPath = "/static/tiw/hvtrs8%2F-dwcidwcigm.aoo%2F";
+         window.location.href = window.location.origin + proxyPath;
+      }
+      function openTikTokInProxy() {
+         const proxyPath = "/static/tiw/hvtrs8%2F-wuw%2Ctkkvoi.aoo%2Fgn-";
+         window.location.href = window.location.origin + proxyPath;
+      }
+      function openTwitchInProxy() {
+         const proxyPath = "/static/tiw/hvtrs8%2F-wuw%2Ctuivcj.vv-";
+         window.location.href = window.location.origin + proxyPath;
+      }
+      function handleSearch() {
+         const searchQuery = document.getElementById("uv-address").value;
+         if (searchQuery) {
+            window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
+         }
+      }
+   </script>
+   <script src="uv/uv.bundle.js" defer></script>
+   <script src="uv/uv.config.js" defer></script>
+   <script src="register-sw.js" defer></script>
+   <script src="search.js" defer></script>
+   <script src="index.js" defer></script>
+   <script src="error.js" defer></script>
+</body>
+</html>
