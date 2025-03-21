@@ -2,7 +2,7 @@
 <html>
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Waffle Proxy</title>
+      <title>Waffle Proxy - DuckDuckGo Search</title>
       <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
       <link rel="stylesheet" href="index.css">
       <script type="text/javascript" src="//counter.websiteout.net/js/7/10/5/0"></script>
@@ -16,6 +16,7 @@
          <h1>Waffle Proxy! 🧇</h1>
 
          <form id="uv-form">
+            <!-- This is the hidden proxy path -->
             <input id="uv-search-engine" value="/static/" type="hidden"/> 
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
             <button type="submit">Search</button>
@@ -25,16 +26,15 @@
             <p id="uv-error"></p>
             <pre id="uv-error-code"></pre>
          </div>
-
-         <a></a> <!-- Fixed invalid <a> elements -->
       </div>
 
       <script>
+         // Event listener for form submission
          document.getElementById('uv-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission behavior
 
             const searchInput = document.getElementById('uv-address').value.trim();
-            const proxyPath = document.getElementById('uv-search-engine').value; // Use the /static/ path
+            const proxyPath = document.getElementById('uv-search-engine').value; // Proxy path
 
             if (isValidURL(searchInput)) {
                // If the input is a valid URL, navigate to it through the proxy
