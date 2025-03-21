@@ -90,17 +90,17 @@
       <!-- Import particles.js -->
       <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
       <script>
-         // Initialize particles.js
+         // Initialize particles.js with more visible particles and connecting lines
          particlesJS('particles-js', {
             "particles": {
                "number": {
-                  "value": 100,
+                  "value": 150, /* Increase number for more particles */
                   "density": {
                      "enable": true,
                      "value_area": 800
                   }
                },
-               "color": { "value": "#ffffff" },
+               "color": { "value": "#ffffff" }, /* Particle color */
                "shape": {
                   "type": "circle",
                   "stroke": {
@@ -109,7 +109,7 @@
                   }
                },
                "opacity": {
-                  "value": 0.5,
+                  "value": 0.7, /* Increase visibility */
                   "random": false,
                   "anim": {
                      "enable": false,
@@ -119,16 +119,49 @@
                   }
                },
                "size": {
-                  "value": 3,
+                  "value": 4, /* Larger particles */
                   "random": true
+               },
+               "line_linked": {
+                  "enable": true, /* Enable connecting lines */
+                  "distance": 150,
+                  "color": "#ffffff",
+                  "opacity": 0.6,
+                  "width": 1
                },
                "move": {
                   "enable": true,
                   "speed": 2,
                   "direction": "none",
+                  "random": false,
+                  "straight": false,
                   "out_mode": "out"
                }
-            }
+            },
+            "interactivity": {
+               "detect_on": "canvas",
+               "events": {
+                  "onhover": {
+                     "enable": true,
+                     "mode": "repulse"
+                  },
+                  "onclick": {
+                     "enable": true,
+                     "mode": "push"
+                  },
+                  "resize": true
+               },
+               "modes": {
+                  "repulse": {
+                     "distance": 100,
+                     "duration": 0.4
+                  },
+                  "push": {
+                     "particles_nb": 4
+                  }
+               }
+            },
+            "retina_detect": true
          });
 
          function openDuckDuckGoInProxy() {
