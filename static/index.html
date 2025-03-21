@@ -13,14 +13,18 @@
          .button-container {
             margin-top: 20px;
             display: flex;
+            justify-content: center;
+         }
+         .button-group {
+            display: flex;
             flex-direction: column;
             align-items: center;
+            margin: 0 10px; /* Adds space between buttons */
          }
          .proxy-button {
             background: none;
             border: none;
             cursor: pointer;
-            margin-bottom: 5px;
          }
          .proxy-button img {
             width: 30px;
@@ -44,16 +48,20 @@
             <input id="uv-address" type="text" placeholder="Search With Waffle Proxy" class="form__input"/>
          </form>
 
-         <!-- Buttons -->
+         <!-- Buttons Side by Side -->
          <div class="button-container">
-            <button class="proxy-button" onclick="openDuckDuckGoInProxy()">
-               <img src="https://www.duckduckgo.com/favicon.ico" alt="DuckDuckGo">
-            </button>
-            <div class="button-label">DuckDuckGo Search Engine</div>
-
-            <button class="proxy-button" onclick="openTikTokInProxy()">
-               <img src="https://www.tiktok.com/favicon.ico" alt="TikTok">
-            </button>
+            <div class="button-group">
+               <button class="proxy-button" onclick="openDuckDuckGoInProxy()">
+                  <img src="https://www.duckduckgo.com/favicon.ico" alt="DuckDuckGo">
+               </button>
+               <div class="button-label">DuckDuckGo</div>
+            </div>
+            <div class="button-group">
+               <button class="proxy-button" onclick="openTikTokInProxy()">
+                  <img src="https://www.tiktok.com/favicon.ico" alt="TikTok">
+               </button>
+               <div class="button-label">TikTok</div>
+            </div>
          </div>
 
          <div class="desc left-margin">
